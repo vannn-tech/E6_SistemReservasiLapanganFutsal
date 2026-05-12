@@ -116,7 +116,7 @@ namespace ReservasiFutsal02
         }
 
         // ── Helper: tampilkan pesan error ─────────────────────────
-        private void ShowError(string msg)
+        private void ShowError(string msg) // method untuk menampilkan pesan error pada label lblError
         {
             lblError.Text    = "⚠  " + msg;
             lblError.Visible = true;
