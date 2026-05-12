@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace ReservasiFutsal02
 {
-    public partial class FormRegister : Form
+    public partial class FormRegister : Form // Form untuk registrasi akun baru, hanya untuk role 'User'
     {
         string connectionString = @"Data Source=LAPTOP-5R80O1Q5\MSSQLSERVER01;Initial Catalog=DBFutsalADO;Integrated Security=True";
 
