@@ -42,13 +42,6 @@
       <FileName>FormRegister.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ReservasiFutsal02.FormReservasi">
-    <Position X="7.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AkAAAKJIDCAAIgliAAKCAghCiAAIAwCAARAUIgABAQE=</HashCode>
-      <FileName>FormReservasi.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="ReservasiFutsal02.FormUser">
     <Position X="9.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>

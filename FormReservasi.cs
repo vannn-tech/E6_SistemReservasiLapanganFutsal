@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace ReservasiFutsal02
 {
-    public partial class FormReservasi : Form
+    public partial class FormReservasi : Form // Form untuk manajemen reservasi, memungkinkan admin untuk melihat, menambah, mengubah status, dan menghapus reservasi
     {
         string connectionString = @"Data Source=LAPTOP-5R80O1Q5\MSSQLSERVER01;Initial Catalog=DBFutsalADO;Integrated Security=True";
 
@@ -367,6 +367,11 @@ namespace ReservasiFutsal02
             cmbLapangan.SelectedIndex = -1;
             cmbJadwal.Items.Clear();
             cmbStatus.SelectedIndex   = -1;
+        }
+
+        private void dgvReservasi_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

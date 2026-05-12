@@ -282,6 +282,7 @@ namespace ReservasiFutsal02
             this.dgvReservasi.Size = new System.Drawing.Size(578, 451);
             this.dgvReservasi.TabIndex = 2;
             this.dgvReservasi.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReservasi_CellClick);
+            this.dgvReservasi.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReservasi_CellContentClick);
             // 
             // FormReservasi
             // 
