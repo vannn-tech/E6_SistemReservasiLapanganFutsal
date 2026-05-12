@@ -19,7 +19,7 @@ namespace ReservasiFutsal02
             _nama   = nama;
         }
 
-        private void FormUser_Load(object sender, EventArgs e)
+        private void FormUser_Load(object sender, EventArgs e) 
         {
             UITheme.ApplyForm(this);
             LogoHelper.ApplyLogo(picLogoHeader, 40);
@@ -50,7 +50,7 @@ namespace ReservasiFutsal02
         }
 
         // ── Load lapangan ke ComboBox filter ─────────────────────
-        private void MuatComboLapangan()
+        private void MuatComboLapangan() // method untuk memuat daftar lapangan yang tersedia ke ComboBox filter, dengan opsi default untuk menampilkan semua lapangan
         {
             cmbFilterLapangan.Items.Clear();
             cmbFilterLapangan.Items.Add("-- Semua Lapangan --");
