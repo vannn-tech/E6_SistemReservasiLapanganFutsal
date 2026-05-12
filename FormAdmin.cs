@@ -15,7 +15,7 @@ namespace ReservasiFutsal02
             InitializeComponent();
         }
 
-        private void FormAdmin_Load(object sender, EventArgs e)
+        private void FormAdmin_Load(object sender, EventArgs e) // event handler untuk load form, mengatur tema, gaya visual, dan membuka sub-form default
         {
             UITheme.ApplyForm(this);
             LogoHelper.ApplyLogo(picSidebarLogo, 48);
