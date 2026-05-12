@@ -268,7 +268,7 @@ namespace ReservasiFutsal02
         }
 
         // ── Filter lapangan ───────────────────────────────────────
-        private void cmbFilterLapangan_SelectedIndexChanged(object sender, EventArgs e)
+        private void cmbFilterLapangan_SelectedIndexChanged(object sender, EventArgs e) // event handler untuk perubahan pilihan di ComboBox filter lapangan, menampilkan jadwal yang tersedia sesuai dengan lapangan yang dipilih atau semua lapangan jika opsi default dipilih
         {
             if (cmbFilterLapangan.SelectedIndex <= 0)
             {
