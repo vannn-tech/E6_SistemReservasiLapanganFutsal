@@ -96,7 +96,7 @@ namespace ReservasiFutsal02
         }
 
         // ── Click handlers navigasi ───────────────────────────────
-        private void btnNavLapangan_Click(object sender, EventArgs e)
+        private void btnNavLapangan_Click(object sender, EventArgs e) // event handler untuk tombol navigasi Lapangan, membuka form Lapangan dan mengatur tombol sebagai aktif
         {
             BukaSubForm(new FormLapangan());
             SetActiveNav(btnNavLapangan, "🏟️  Manajemen Lapangan");
