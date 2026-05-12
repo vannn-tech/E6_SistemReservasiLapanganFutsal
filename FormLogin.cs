@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace ReservasiFutsal02
 {
-    public partial class FormLogin : Form
+    public partial class FormLogin : Form // Form untuk login, memverifikasi kredensial pengguna dan mengarahkan ke dashboard sesuai role
     {
         string connectionString = @"Data Source=LAPTOP-5R80O1Q5\MSSQLSERVER01;Initial Catalog=DBFutsalADO;Integrated Security=True";
 
