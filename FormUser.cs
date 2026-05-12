@@ -314,7 +314,7 @@ namespace ReservasiFutsal02
             }
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private void btnRefresh_Click(object sender, EventArgs e) // event handler untuk tombol Refresh, memuat ulang data jadwal yang tersedia dan riwayat reservasi
         {
             TampilkanJadwalTersedia();
             TampilkanRiwayatSaya();
