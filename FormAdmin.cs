@@ -10,7 +10,7 @@ namespace ReservasiFutsal02
     // ─────────────────────────────────────────────────────────────
     public partial class FormAdmin : Form // Form utama untuk role Admin, berisi sidebar navigasi dan panel konten untuk sub-form manajemen
     {
-        public FormAdmin()
+        public FormAdmin() // constructor untuk inisialisasi komponen form
         {
             InitializeComponent();
         }
