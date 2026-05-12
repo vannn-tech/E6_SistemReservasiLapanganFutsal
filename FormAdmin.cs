@@ -129,7 +129,7 @@ namespace ReservasiFutsal02
         }
 
         // ── Timer — update jam di top bar ─────────────────────────
-        private void Timer1_Tick(object sender, EventArgs e) => UpdateDateTime();
+        private void Timer1_Tick(object sender, EventArgs e) => UpdateDateTime(); // event handler untuk timer tick, memanggil method update jam
 
         private void UpdateDateTime()
         {
