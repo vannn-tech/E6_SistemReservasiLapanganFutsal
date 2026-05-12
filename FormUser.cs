@@ -108,7 +108,7 @@ namespace ReservasiFutsal02
         }
 
         // ── Tampilkan riwayat reservasi milik user ini ────────────
-        private void TampilkanRiwayatSaya()
+        private void TampilkanRiwayatSaya() // method untuk menampilkan riwayat reservasi milik user ini di DataGridView, dengan informasi lapangan, tanggal & jam jadwal, tanggal reservasi, dan status (Aktif/Dibatalkan/Selesai)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
