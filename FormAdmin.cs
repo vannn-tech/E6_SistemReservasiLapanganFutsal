@@ -131,7 +131,7 @@ namespace ReservasiFutsal02
         // ── Timer — update jam di top bar ─────────────────────────
         private void Timer1_Tick(object sender, EventArgs e) => UpdateDateTime(); // event handler untuk timer tick, memanggil method update jam
 
-        private void UpdateDateTime()
+        private void UpdateDateTime() // method untuk mengupdate label tanggal dan jam di top bar, menggunakan format dan budaya Indonesia
         {
             lblDateTime.Text = DateTime.Now.ToString("dddd, dd MMM yyyy   HH:mm:ss",
                 new System.Globalization.CultureInfo("id-ID"));
