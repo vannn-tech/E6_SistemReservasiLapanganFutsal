@@ -25,7 +25,7 @@ namespace ReservasiFutsal02 // inisialisasi namespace sesuai nama proyek
             pnlInfo.BackColor        = UITheme.BgCard;
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private void btnLogin_Click(object sender, EventArgs e) // event handler untuk tombol Login, membuka form login dan menyembunyikan dashboard
         {
             FormLogin fLogin = new FormLogin();
             fLogin.Show();
