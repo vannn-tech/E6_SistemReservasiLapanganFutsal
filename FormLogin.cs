@@ -6,7 +6,7 @@ namespace ReservasiFutsal02
 {
     public partial class FormLogin : Form // Form untuk login, memverifikasi kredensial pengguna dan mengarahkan ke dashboard sesuai role
     {
-        string connectionString = @"Data Source=LAPTOP-5R80O1Q5\MSSQLSERVER01;Initial Catalog=DBFutsalADO;Integrated Security=True";
+        string connectionString = @"Data Source=LAPTOP-5R80O1Q5\MSSQLSERVER01;Initial Catalog=DBFutsalADO;Integrated Security=True"; // Ganti dengan string koneksi yang sesuai dengan database Anda
 
         public FormLogin()
         {
