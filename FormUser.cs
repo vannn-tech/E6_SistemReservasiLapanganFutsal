@@ -142,7 +142,7 @@ namespace ReservasiFutsal02
         }
 
         // ── Tombol PESAN ──────────────────────────────────────────
-        private void btnPesan_Click(object sender, EventArgs e)
+        private void btnPesan_Click(object sender, EventArgs e) // event handler untuk tombol Pesan, melakukan validasi pemilihan jadwal, konfirmasi pemesanan, dan menyimpan data reservasi ke database serta mengupdate status jadwal menjadi 'Dipesan'
         {
             if (dgvJadwalTersedia.SelectedRows.Count == 0)
             {
