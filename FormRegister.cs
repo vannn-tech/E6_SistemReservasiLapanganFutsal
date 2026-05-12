@@ -13,7 +13,7 @@ namespace ReservasiFutsal02
             InitializeComponent();
         }
 
-        private void FormRegister_Load(object sender, EventArgs e)
+        private void FormRegister_Load(object sender, EventArgs e) // event handler untuk load form, mengatur tema dan gaya visual
         {
             UITheme.ApplyForm(this);
             LogoHelper.ApplyLogo(picLogo, 60);
