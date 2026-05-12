@@ -32,7 +32,7 @@ namespace ReservasiFutsal02
         }
 
         // ── Tombol LOGIN ──────────────────────────────────────────
-        private void btnLogin_Click(object sender, EventArgs e)
+        private void btnLogin_Click(object sender, EventArgs e) // event handler untuk tombol Login, melakukan validasi input dan verifikasi kredensial dengan database
         {
             lblError.Visible = false;
 
