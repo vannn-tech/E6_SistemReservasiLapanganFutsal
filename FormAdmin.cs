@@ -86,7 +86,7 @@ namespace ReservasiFutsal02
             lblPageTitle.Text     = pageTitle;
         }
 
-        private void StyleNavButton(Button btn)
+        private void StyleNavButton(Button btn) // method untuk mengatur gaya dasar tombol navigasi di sidebar
         {
             btn.FlatStyle   = FlatStyle.Flat;
             btn.FlatAppearance.BorderSize = 0;
