@@ -72,7 +72,7 @@ namespace ReservasiFutsal02
             subForm.Show();
         }
 
-        private void SetActiveNav(Button activeBtn, string pageTitle)
+        private void SetActiveNav(Button activeBtn, string pageTitle) // method untuk mengatur tampilan tombol navigasi yang aktif, mereset tombol lain ke gaya default
         {
             Button[] navButtons = { btnNavLapangan, btnNavJadwal, btnNavReservasi };
             foreach (var btn in navButtons)
