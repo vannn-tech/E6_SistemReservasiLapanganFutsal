@@ -115,7 +115,7 @@ namespace ReservasiFutsal02
         }
 
         // ── Logout ────────────────────────────────────────────────
-        private void btnLogout_Click(object sender, EventArgs e)
+        private void btnLogout_Click(object sender, EventArgs e) // event handler untuk tombol Logout, menampilkan konfirmasi dan kembali ke dashboard jika user memilih Yes
         {
             DialogResult dr = MessageBox.Show("Yakin ingin logout?", "Logout",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
