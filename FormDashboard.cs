@@ -1,11 +1,11 @@
 using System;
 using System.Windows.Forms;
 
-namespace ReservasiFutsal02
+namespace ReservasiFutsal02 // inisialisasi namespace sesuai nama proyek 
 {
     public partial class FormDashboard : Form
     {
-        public FormDashboard()
+        public FormDashboard() 
         {
             InitializeComponent();
         }
