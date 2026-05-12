@@ -122,7 +122,7 @@ namespace ReservasiFutsal02
             lblPesan.Visible = true;
         }
 
-        private void BersihkanForm()
+        private void BersihkanForm() // method untuk membersihkan semua input dan mengembalikan fokus ke txtNama
         {
             txtNama.Clear();
             txtUsername.Clear();
