@@ -102,7 +102,7 @@ namespace ReservasiFutsal02
         }
 
         // ── Tombol KEMBALI ke Dashboard ───────────────────────────
-        private void btnKembali_Click(object sender, EventArgs e)
+        private void btnKembali_Click(object sender, EventArgs e) // event handler untuk tombol Kembali, membuka form dashboard dan menutup form login
         {
             FormDashboard fd = new FormDashboard();
             fd.Show();
