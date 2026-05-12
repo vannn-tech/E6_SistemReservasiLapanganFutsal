@@ -110,7 +110,7 @@ namespace ReservasiFutsal02
         }
 
         // ── Toggle tampilkan/sembunyikan password ─────────────────
-        private void cbShowPassword_CheckedChanged(object sender, EventArgs e)
+        private void cbShowPassword_CheckedChanged(object sender, EventArgs e) // event handler untuk checkbox Show Password, mengubah karakter password menjadi teks biasa atau tetap tersembunyi
         {
             txtPassword.PasswordChar = cbShowPassword.Checked ? '\0' : '*';
         }
