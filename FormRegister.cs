@@ -33,7 +33,7 @@ namespace ReservasiFutsal02
         }
 
         // ── Tombol DAFTAR ─────────────────────────────────────────
-        private void btnDaftar_Click(object sender, EventArgs e)
+        private void btnDaftar_Click(object sender, EventArgs e) // event handler untuk tombol Daftar, melakukan validasi input dan menyimpan data ke database
         {
             lblPesan.Visible = false;
 
