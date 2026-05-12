@@ -56,7 +56,7 @@ namespace ReservasiFutsal02
         }
 
         // ── Navigasi ke sub-form ──────────────────────────────────
-        private void BukaSubForm(Form subForm)
+        private void BukaSubForm(Form subForm) // method untuk membuka sub-form di panel konten, menutup form sebelumnya jika ada
         {
             // Tutup form yang ada di panel
             foreach (Control ctrl in pnlContent.Controls)
