@@ -5,8 +5,7 @@ using System.Windows.Forms;
 
 namespace ReservasiFutsal02
 {
-    // Form ini dibuka setelah user (bukan admin) berhasil login
-    public partial class FormUser : Form
+    public partial class FormUser : Form // Form utama untuk role User, menampilkan jadwal lapangan yang tersedia dan riwayat reservasi milik user tersebut
     {
         string connectionString = @"Data Source=LAPTOP-5R80O1Q5\MSSQLSERVER01;Initial Catalog=DBFutsalADO;Integrated Security=True";
 
