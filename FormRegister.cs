@@ -107,7 +107,7 @@ namespace ReservasiFutsal02
         }
 
         // ── Tombol KEMBALI ────────────────────────────────────────
-        private void btnKembali_Click(object sender, EventArgs e)
+        private void btnKembali_Click(object sender, EventArgs e) // event handler untuk tombol Kembali, menutup form register dan kembali ke dashboard
         {
             this.Close();
         }
