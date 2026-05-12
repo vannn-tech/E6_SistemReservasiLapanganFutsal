@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace ReservasiFutsal02
 {
-    public partial class FormJadwal : Form
+    public partial class FormJadwal : Form // Form untuk manajemen reservasi, memungkinkan admin melihat, menambah, mengubah status, dan menghapus reservasi yang ada
     {
         string connectionString = @"Data Source=LAPTOP-5R80O1Q5\MSSQLSERVER01;Initial Catalog=DBFutsalADO;Integrated Security=True";
 
