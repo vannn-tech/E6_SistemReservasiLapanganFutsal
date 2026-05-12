@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace ReservasiFutsal02 // inisialisasi namespace sesuai nama proyek 
 {
-    public partial class FormDashboard : Form
+    public partial class FormDashboard : Form // Form utama saat aplikasi dijalankan, berisi tombol Login & Register
     {
         public FormDashboard() 
         {
