@@ -210,7 +210,7 @@ namespace ReservasiFutsal02
         }
 
         // ── Tombol BATALKAN ───────────────────────────────────────
-        private void btnBatalkan_Click(object sender, EventArgs e)
+        private void btnBatalkan_Click(object sender, EventArgs e) // event handler untuk tombol Batalkan, melakukan validasi pemilihan reservasi, konfirmasi pembatalan, dan mengupdate status reservasi menjadi 'Dibatalkan' serta mengupdate status jadwal menjadi 'Tersedia' jika pembatalan berhasil
         {
             if (dgvRiwayat.SelectedRows.Count == 0)
             {
