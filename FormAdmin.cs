@@ -8,7 +8,7 @@ namespace ReservasiFutsal02
     //  Berisi sidebar navigasi dan Panel untuk setiap sub-form
     //  (Lapangan, Jadwal, Reservasi)
     // ─────────────────────────────────────────────────────────────
-    public partial class FormAdmin : Form
+    public partial class FormAdmin : Form // Form utama untuk role Admin, berisi sidebar navigasi dan panel konten untuk sub-form manajemen
     {
         public FormAdmin()
         {
