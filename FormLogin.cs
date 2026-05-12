@@ -95,7 +95,7 @@ namespace ReservasiFutsal02
         }
 
         // ── Tombol REGISTER ───────────────────────────────────────
-        private void btnRegister_Click(object sender, EventArgs e)
+        private void btnRegister_Click(object sender, EventArgs e) // event handler untuk tombol Register, membuka form register sebagai dialog
         {
             FormRegister regForm = new FormRegister();
             regForm.ShowDialog();
