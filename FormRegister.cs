@@ -8,7 +8,7 @@ namespace ReservasiFutsal02
     {
         string connectionString = @"Data Source=LAPTOP-5R80O1Q5\MSSQLSERVER01;Initial Catalog=DBFutsalADO;Integrated Security=True"; // Ganti dengan string koneksi yang sesuai dengan database Anda 
 
-        public FormRegister()
+        public FormRegister() // constructor untuk inisialisasi komponen form
         {
             InitializeComponent();
         }
