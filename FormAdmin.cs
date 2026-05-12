@@ -102,7 +102,7 @@ namespace ReservasiFutsal02
             SetActiveNav(btnNavLapangan, "🏟️  Manajemen Lapangan");
         }
 
-        private void btnNavJadwal_Click(object sender, EventArgs e)
+        private void btnNavJadwal_Click(object sender, EventArgs e) // event handler untuk tombol navigasi Jadwal, membuka form Jadwal dan mengatur tombol sebagai aktif
         {
             BukaSubForm(new FormJadwal());
             SetActiveNav(btnNavJadwal, "📅  Manajemen Jadwal");
