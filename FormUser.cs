@@ -77,7 +77,7 @@ namespace ReservasiFutsal02
         }
 
         // ── Tampilkan jadwal yang masih tersedia ──────────────────
-        private void TampilkanJadwalTersedia()
+        private void TampilkanJadwalTersedia() // method untuk menampilkan jadwal lapangan yang masih tersedia (status 'Tersedia' dan tanggal >= hari ini) di DataGridView, dengan informasi lapangan, tanggal, jam, dan status
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
