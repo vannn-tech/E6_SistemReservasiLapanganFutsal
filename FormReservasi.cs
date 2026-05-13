@@ -51,7 +51,6 @@ namespace ReservasiFutsal02
             MuatComboUser();
             MuatComboLapangan();
 
-            // Setting Grid — sesuai Modul 9 Langkah 3
             dgvReservasi.SelectionMode       = DataGridViewSelectionMode.FullRowSelect;
             dgvReservasi.MultiSelect         = false;
             dgvReservasi.ReadOnly            = true;
@@ -74,8 +73,7 @@ namespace ReservasiFutsal02
             LoadData();     // fills dtReservasi and calls BindControls()
         }
 
-        // ── BindControls — sesuai Modul 9 Langkah 5 ─────────────
-        private void BindControls()
+        private void BindControls() // Menghubungkan kontrol form dengan BindingSource untuk sinkronisasi data
         {
             txtReservasiID.DataBindings.Clear();
             txtTanggalReservasi.DataBindings.Clear();
