@@ -158,6 +158,7 @@ namespace ReservasiFutsal02
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
+                    // Panggil stored procedure sp_InsertLapangan untuk menyimpan data lapangan baru
                     SqlCommand cmd = new SqlCommand("sp_InsertLapangan", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@NamaLapangan", txtNamaLapangan.Text.Trim());
