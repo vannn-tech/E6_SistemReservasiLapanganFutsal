@@ -297,7 +297,7 @@ namespace ReservasiFutsal02
         }
 
         // --- FUNGSI TEST INJECTION (Modul 9 Tahap 1 & 2) ---
-        private void btnTestInjection_Click(object sender, EventArgs e)
+        private void btnTestInjection_Click(object sender, EventArgs e) // Event handler untuk tombol Test Injection, melakukan update dengan query yang rentan terhadap SQL Injection menggunakan input dari txtNamaLapangan
         {
             try
             {
