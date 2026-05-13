@@ -10,7 +10,7 @@ namespace ReservasiFutsal02
         // Ganti Connection String sesuai dengan database kamu
         string connectionString = @"Data Source=LAPTOP-5R80O1Q5\MSSQLSERVER01;Initial Catalog=DBFutsalADO;Integrated Security=True";
 
-        private BindingSource bindingSource = new BindingSource();
+        private BindingSource bindingSource = new BindingSource(); // BindingSource untuk mengelola data dan navigasi
         private DataTable dtLapangan = new DataTable();
         private BindingNavigator bindingNavigator1;
 
