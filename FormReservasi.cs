@@ -13,6 +13,7 @@ namespace ReservasiFutsal02
         private BindingSource bindingSource = new BindingSource();
         private DataTable     dtReservasi   = new DataTable();
 
+        // TextBox tersembunyi untuk menyimpan referensi JadwalID saat update status
         private BindingNavigator bindingNavigator1;
 
         public FormReservasi()
