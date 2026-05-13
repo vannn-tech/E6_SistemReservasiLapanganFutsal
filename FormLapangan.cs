@@ -106,6 +106,7 @@ namespace ReservasiFutsal02
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
+                    // Panggil stored procedure sp_GetLapangan untuk mengambil data lapangan
                     SqlCommand cmd = new SqlCommand("sp_GetLapangan", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
