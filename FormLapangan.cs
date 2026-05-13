@@ -12,7 +12,7 @@ namespace ReservasiFutsal02
 
         private BindingSource bindingSource = new BindingSource(); // BindingSource untuk mengelola data dan navigasi
         private DataTable dtLapangan = new DataTable(); // DataTable untuk menyimpan data lapangan yang diambil dari database
-        private BindingNavigator bindingNavigator1;
+        private BindingNavigator bindingNavigator1; // BindingNavigator untuk navigasi data, akan diinisialisasi di SetupNavigator()
 
         public FormLapangan()
         {
