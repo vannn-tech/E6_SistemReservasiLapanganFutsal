@@ -72,6 +72,7 @@ namespace ReservasiFutsal02
 
         private void SetupNavigator()
         {
+            // Inisialisasi BindingNavigator dan hubungkan dengan BindingSource
             bindingNavigator1 = new BindingNavigator(true)
             {
                 BindingSource = bindingSource,
