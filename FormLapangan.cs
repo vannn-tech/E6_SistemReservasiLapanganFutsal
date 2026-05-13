@@ -32,7 +32,7 @@ namespace ReservasiFutsal02
             dgvLapangan.DataSource = bindingSource;
 
             LoadData();
-            BindControls();
+            BindControls(); // Bind TextBox dan ComboBox ke BindingSource agar otomatis update saat navigasi
         }
 
         #region UI & Setup Methods
