@@ -82,7 +82,7 @@ namespace ReservasiFutsal02
             pnlGrid.Controls.Add(bindingNavigator1);
         }
 
-        private void BindControls()
+        private void BindControls() // Bind TextBox dan ComboBox ke BindingSource agar otomatis update saat navigasi
         {
             txtLapanganID.DataBindings.Clear();
             txtNamaLapangan.DataBindings.Clear();
