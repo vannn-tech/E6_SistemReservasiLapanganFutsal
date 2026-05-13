@@ -9,11 +9,10 @@ namespace ReservasiFutsal02
     {
         string connectionString = @"Data Source=LAPTOP-5R80O1Q5\MSSQLSERVER01;Initial Catalog=DBFutsalADO;Integrated Security=True";
 
-        // ── Sesuai Modul 9 Langkah 2 ─────────────────────────────
+        // BindingSource untuk sinkronisasi antara DataTable dan kontrol form
         private BindingSource bindingSource = new BindingSource();
         private DataTable     dtReservasi   = new DataTable();
 
-        // ── BindingNavigator (Modul 8 Langkah 2) ─────────────────
         private BindingNavigator bindingNavigator1;
 
         public FormReservasi()
