@@ -132,6 +132,7 @@ namespace ReservasiFutsal02
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
+                    // Panggil stored procedure sp_CountLapangan untuk menghitung total lapangan
                     SqlCommand cmd = new SqlCommand("sp_CountLapangan", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
