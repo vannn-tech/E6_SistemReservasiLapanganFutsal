@@ -47,4 +47,46 @@ Menampilkan seluruh data dari SQL Server ke dalam `DataGridView`.
 
 ---
 
+🛡️ Skenario Pengujian Keamanan: SQL Injection
+Bagian ini mendokumentasikan pemenuhan Kriteria 3 UCP 2, yaitu demonstrasi celah keamanan SQL Injection dan solusinya.
 
+1. Identifikasi Celah (Vulnerability)
+Celah ini secara teoritis terdapat pada fitur Login. Jika sistem menggunakan penggabungan string (concatenation) secara langsung, penyerang dapat memanipulasi logika query SQL.
+
+Lokasi: FormLogin.cs pada event btnLogin_Click.
+
+Contoh Kode Rentan (Vulnerable Code):
+
+C#
+string query = "SELECT * FROM UserAccount WHERE Username = '" + txtUsername.Text + "' AND Password = '" + txtPassword.Text + "'";
+2. Skenario Serangan (The Attack)
+Penyerang ingin masuk ke sistem tanpa memiliki akun atau password yang valid.
+
+Input Username: ' OR 1=1 --
+
+Input Password: (Dikosongkan atau diisi acak)
+
+Logika Manipulasi:
+Ketika input tersebut masuk ke kode rentan, query yang dikirim ke SQL Server menjadi:
+
+SQL
+SELECT * FROM UserAccount WHERE Username = '' OR 1=1 --' AND Password = ''
+Analisis Hasil:
+
+OR 1=1 selalu bernilai TRUE.
+
+Tanda -- adalah komentar di SQL, sehingga pengecekan password di belakangnya diabaikan.
+
+Sistem akan memberikan akses (Login Berhasil) karena query tersebut mengembalikan data user pertama di database.
+
+3. Solusi Pencegahan (Mitigasi)
+Dalam proyek UCP 2 ini, pencegahan dilakukan dengan menerapkan Kriteria 1, yaitu menggunakan Stored Procedure dan Parameterized Query.
+
+Kode yang Diterapkan (Secure Code):
+
+C#
+SqlCommand cmd = new SqlCommand("sp_Login", conn);
+cmd.CommandType = CommandType.StoredProcedure;
+
+cmd.Parameters.AddWithValue("@Username", txtUsername.Text);
+cmd.Parameters.AddWithValue("@PasswordHash", txtPassword.Text);
