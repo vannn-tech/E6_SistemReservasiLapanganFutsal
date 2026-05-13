@@ -58,7 +58,7 @@ namespace ReservasiFutsal02
             dgvReservasi.AllowUserToAddRows  = false;
             dgvReservasi.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            // BindingNavigator — sesuai Modul 8 Langkah 2
+            // Tambahkan BindingNavigator untuk navigasi data
             bindingNavigator1 = new BindingNavigator(true)
             {
                 BindingSource = bindingSource,
@@ -67,7 +67,7 @@ namespace ReservasiFutsal02
             };
             pnlGrid.Controls.Add(bindingNavigator1);
 
-            // call LoadData first, then bind controls
+            // Hubungkan BindingSource dengan DataTable dan DataGridView
             bindingSource.DataSource = dtReservasi;
             dgvReservasi.DataSource = bindingSource;
 
