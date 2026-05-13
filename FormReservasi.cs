@@ -164,8 +164,7 @@ namespace ReservasiFutsal02
             }
         }
 
-        // ── LoadData — sp_GetReservasi (SELECT via VIEW vwReservasi)
-        //   Sesuai Modul 9 Langkah 4 & Modul 10 Langkah 1
+        // ── LOAD DATA — sp_GetReservasi ───────────────────────────
         private void LoadData()
         {
             try
@@ -194,8 +193,6 @@ namespace ReservasiFutsal02
             }
         }
 
-        // ── HitungTotal — SP COUNT dengan OUTPUT Parameter ───────
-        //   Sesuai Modul 10 Langkah 6
         private void HitungTotal()
         {
             try
