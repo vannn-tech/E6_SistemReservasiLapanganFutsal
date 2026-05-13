@@ -5,9 +5,14 @@ using System.Windows.Forms;
 
 namespace ReservasiFutsal02
 {
-    public partial class FormLapangan : Form // Form untuk manajemen reservasi, memungkinkan admin untuk melihat, menambah, mengubah status, dan menghapus reservasi
+    public partial class FormLapangan : Form
     {
+        // Ganti Connection String sesuai dengan database kamu
         string connectionString = @"Data Source=LAPTOP-5R80O1Q5\MSSQLSERVER01;Initial Catalog=DBFutsalADO;Integrated Security=True";
+
+        private BindingSource bindingSource = new BindingSource();
+        private DataTable dtLapangan = new DataTable();
+        private BindingNavigator bindingNavigator1;
 
         public FormLapangan()
         {
@@ -15,6 +20,23 @@ namespace ReservasiFutsal02
         }
 
         private void FormLapangan_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'dBFutsalADODataSet.vw_Lapangan' table. You can move, or remove it, as needed.
+            this.vw_LapanganTableAdapter.Connection.ConnectionString = connectionString;
+            SetupUI();
+            SetupGrid();
+            SetupNavigator();
+
+            // Hubungkan BindingSource ke DGV
+            bindingSource.DataSource = dtLapangan;
+            dgvLapangan.DataSource = bindingSource;
+
+            LoadData();
+            BindControls();
+        }
+
+        #region UI & Setup Methods
+        private void SetupUI()
         {
             UITheme.ApplyForm(this);
             UITheme.StyleButtonPrimary(btnSimpan);
@@ -29,290 +51,279 @@ namespace ReservasiFutsal02
             UITheme.StyleComboBox(cmbStatus);
             UITheme.StyleDataGridView(dgvLapangan);
 
-            lblTitle.ForeColor  = UITheme.TextPrimary;
-            lblTotal.ForeColor  = UITheme.TextSecondary;
-            pnlForm.BackColor   = UITheme.BgPanel;
-            pnlGrid.BackColor   = UITheme.BgDark;
+            lblTitle.ForeColor = UITheme.TextPrimary;
+            lblTotal.ForeColor = UITheme.TextSecondary;
+            pnlForm.BackColor = UITheme.BgPanel;
+            pnlGrid.BackColor = UITheme.BgDark;
 
+            cmbStatus.Items.Clear();
             cmbStatus.Items.AddRange(new string[] { "Tersedia", "Tidak Tersedia" });
             txtLapanganID.ReadOnly = true;
-
-            // Konfigurasi DGV — cegah baris kosong & edit langsung
-            dgvLapangan.AllowUserToAddRows    = false;
-            dgvLapangan.AllowUserToDeleteRows = false;
-            dgvLapangan.ReadOnly              = true;
-            dgvLapangan.SelectionMode         = DataGridViewSelectionMode.FullRowSelect;
-
-            TampilkanDataDenganDataReader();
         }
 
-        // ── Setup kolom DGV (dipanggil sekali, reuse setelahnya) ──
-        private void SetupKolomDGV()
+        private void SetupGrid()
         {
-            dgvLapangan.Columns.Clear();
-
-            var colID     = new DataGridViewTextBoxColumn { Name = "LapanganID",   HeaderText = "ID",            Width = 45, ReadOnly = true };
-            var colNama   = new DataGridViewTextBoxColumn { Name = "NamaLapangan", HeaderText = "Nama Lapangan", ReadOnly = true };
-            var colLokasi = new DataGridViewTextBoxColumn { Name = "Lokasi",        HeaderText = "Lokasi",        ReadOnly = true };
-            var colStatus = new DataGridViewTextBoxColumn { Name = "Status",        HeaderText = "Status",        Width = 110, ReadOnly = true };
-
-            colNama.AutoSizeMode   = DataGridViewAutoSizeColumnMode.Fill;
-            colLokasi.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-            dgvLapangan.Columns.AddRange(colID, colNama, colLokasi, colStatus);
-            dgvLapangan.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            dgvLapangan.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvLapangan.MultiSelect = false;
+            dgvLapangan.ReadOnly = true;
+            dgvLapangan.AllowUserToAddRows = false;
+            dgvLapangan.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
-        // ══════════════════════════════════════════════════════════
-        //  BAGIAN E — Tampilkan Data menggunakan SqlDataReader
-        // ══════════════════════════════════════════════════════════
-        private void TampilkanDataDenganDataReader()
+        private void SetupNavigator()
         {
-            dgvLapangan.Rows.Clear();
-            if (dgvLapangan.Columns.Count == 0) SetupKolomDGV();
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            bindingNavigator1 = new BindingNavigator(true)
             {
-                try
-                {
-                    SqlCommand    cmd    = new SqlCommand(
-                        "SELECT LapanganID, NamaLapangan, Lokasi, Status FROM Lapangan ORDER BY LapanganID",
-                        conn);
-                    conn.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
+                BindingSource = bindingSource,
+                Dock = DockStyle.Bottom,
+                BackColor = UITheme.BgPanel
+            };
+            pnlGrid.Controls.Add(bindingNavigator1);
+        }
 
-                    while (reader.Read())
-                    {
-                        dgvLapangan.Rows.Add(
-                            reader["LapanganID"].ToString(),
-                            reader["NamaLapangan"].ToString(),
-                            reader["Lokasi"].ToString(),
-                            reader["Status"].ToString()
-                        );
-                    }
-                    reader.Close();
+        private void BindControls()
+        {
+            txtLapanganID.DataBindings.Clear();
+            txtNamaLapangan.DataBindings.Clear();
+            txtLokasi.DataBindings.Clear();
+            cmbStatus.DataBindings.Clear();
 
-                    // ExecuteScalar — hitung total & tampil ke lblTotal
-                    HitungTotalExecuteScalar(conn);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Gagal memuat data: " + ex.Message, "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            if (dtLapangan.Columns.Count > 0)
+            {
+                txtLapanganID.DataBindings.Add("Text", bindingSource, "LapanganID", true, DataSourceUpdateMode.Never);
+                txtNamaLapangan.DataBindings.Add("Text", bindingSource, "NamaLapangan");
+                txtLokasi.DataBindings.Add("Text", bindingSource, "Lokasi");
+                cmbStatus.DataBindings.Add("Text", bindingSource, "Status");
             }
         }
+        #endregion
 
-        // ── ExecuteScalar → lblTotal ──────────────────────────────
-        private void HitungTotalExecuteScalar(SqlConnection conn)
+        #region Data Operations (Stored Procedures)
+        private void LoadData()
         {
             try
             {
-                if (conn.State != ConnectionState.Open) conn.Open();
-                int total    = (int)new SqlCommand("SELECT COUNT(*) FROM Lapangan", conn).ExecuteScalar();
-                int tersedia = (int)new SqlCommand("SELECT COUNT(*) FROM Lapangan WHERE Status='Tersedia'", conn).ExecuteScalar();
-                lblTotal.Text = $"Total Lapangan: {total}   |   Tersedia: {tersedia}";
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("sp_GetLapangan", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        dtLapangan = new DataTable();
+                        da.Fill(dtLapangan);
+                        bindingSource.DataSource = dtLapangan;
+                    }
+                }
+                HitungTotal();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Gagal load data: " + ex.Message);
+            }
         }
 
-        // ══════════════════════════════════════════════════════════
-        //  BAGIAN D — INSERT
-        // ══════════════════════════════════════════════════════════
+        private void HitungTotal()
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("sp_CountLapangan", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlParameter outputParam = new SqlParameter("@Total", SqlDbType.Int) { Direction = ParameterDirection.Output };
+                    cmd.Parameters.Add(outputParam);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    lblTotal.Text = "Total Lapangan: " + outputParam.Value.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error hitung total: " + ex.Message);
+            }
+        }
+        #endregion
+
+        #region Event Handlers
         private void btnSimpan_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtNamaLapangan.Text) ||
-                string.IsNullOrWhiteSpace(txtLokasi.Text) ||
-                cmbStatus.SelectedIndex < 0)
+            try
             {
-                MessageBox.Show("Nama Lapangan, Lokasi, dan Status wajib diisi!", "Peringatan",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                try
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand(
-                        "INSERT INTO Lapangan (NamaLapangan, Lokasi, Status) VALUES (@nama, @lok, @stat)", conn);
-                    cmd.Parameters.AddWithValue("@nama", txtNamaLapangan.Text.Trim());
-                    cmd.Parameters.AddWithValue("@lok",  txtLokasi.Text.Trim());
-                    cmd.Parameters.AddWithValue("@stat", cmbStatus.Text);
+                    SqlCommand cmd = new SqlCommand("sp_InsertLapangan", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@NamaLapangan", txtNamaLapangan.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Lokasi", txtLokasi.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Status", cmbStatus.Text);
+
+                    SqlParameter pNewID = new SqlParameter("@NewID", SqlDbType.Int) { Direction = ParameterDirection.Output };
+                    SqlParameter pPesan = new SqlParameter("@Pesan", SqlDbType.NVarChar, 200) { Direction = ParameterDirection.Output };
+                    cmd.Parameters.Add(pNewID);
+                    cmd.Parameters.Add(pPesan);
+
                     conn.Open();
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("✅  Lapangan berhasil ditambahkan!", "Sukses",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    BersihkanForm();
-                    TampilkanDataDenganDataReader();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Gagal menyimpan: " + ex.Message, "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    if (pPesan.Value.ToString() == "OK")
+                    {
+                        MessageBox.Show("✅ Berhasil simpan!");
+                        LoadData();
+                    }
+                    else MessageBox.Show("⚠ " + pPesan.Value.ToString());
                 }
             }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
-        // ══════════════════════════════════════════════════════════
-        //  BAGIAN D — UPDATE
-        // ══════════════════════════════════════════════════════════
         private void btnUbah_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtLapanganID.Text))
-            {
-                MessageBox.Show("Pilih lapangan di tabel terlebih dahulu!", "Peringatan",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txtNamaLapangan.Text) ||
-                string.IsNullOrWhiteSpace(txtLokasi.Text) ||
-                cmbStatus.SelectedIndex < 0)
-            {
-                MessageBox.Show("Nama Lapangan, Lokasi, dan Status wajib diisi!", "Peringatan",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            // Konfirmasi sebelum UPDATE
-            if (MessageBox.Show("Yakin ingin mengubah data lapangan ini?",
-                "Konfirmasi Ubah", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+            if (string.IsNullOrEmpty(txtLapanganID.Text)) return;
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                try
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand(
-                        "UPDATE Lapangan SET NamaLapangan=@nama, Lokasi=@lok, Status=@stat WHERE LapanganID=@id", conn);
-                    cmd.Parameters.AddWithValue("@id",   txtLapanganID.Text);
-                    cmd.Parameters.AddWithValue("@nama", txtNamaLapangan.Text.Trim());
-                    cmd.Parameters.AddWithValue("@lok",  txtLokasi.Text.Trim());
-                    cmd.Parameters.AddWithValue("@stat", cmbStatus.Text);
+                    SqlCommand cmd = new SqlCommand("sp_UpdateLapangan", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@LapanganID", int.Parse(txtLapanganID.Text));
+                    cmd.Parameters.AddWithValue("@NamaLapangan", txtNamaLapangan.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Lokasi", txtLokasi.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Status", cmbStatus.Text);
+
+                    SqlParameter pPesan = new SqlParameter("@Pesan", SqlDbType.NVarChar, 200) { Direction = ParameterDirection.Output };
+                    cmd.Parameters.Add(pPesan);
+
                     conn.Open();
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("✅  Data lapangan berhasil diperbarui!", "Sukses",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    BersihkanForm();
-                    TampilkanDataDenganDataReader();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Gagal mengubah: " + ex.Message, "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    LoadData();
+                    MessageBox.Show("✅ Data diperbarui!");
                 }
             }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
-        // ══════════════════════════════════════════════════════════
-        //  BAGIAN D — DELETE
-        // ══════════════════════════════════════════════════════════
         private void btnHapus_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtLapanganID.Text))
-            {
-                MessageBox.Show("Pilih lapangan yang akan dihapus!", "Peringatan",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            // Konfirmasi sebelum DELETE
-            if (MessageBox.Show(
-                "Hapus lapangan ini?\nData jadwal & reservasi terkait juga akan terpengaruh.",
-                "Konfirmasi Hapus", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes) return;
+            if (string.IsNullOrEmpty(txtLapanganID.Text)) return;
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            if (MessageBox.Show("Hapus data?", "Konfirmasi", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 try
                 {
-                    SqlCommand cmd = new SqlCommand(
-                        "DELETE FROM Lapangan WHERE LapanganID=@id", conn);
-                    cmd.Parameters.AddWithValue("@id", txtLapanganID.Text);
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Lapangan berhasil dihapus!", "Info",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    BersihkanForm();
-                    TampilkanDataDenganDataReader();
+                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    {
+                        SqlCommand cmd = new SqlCommand("sp_DeleteLapangan", conn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@LapanganID", int.Parse(txtLapanganID.Text));
+
+                        SqlParameter pPesan = new SqlParameter("@Pesan", SqlDbType.NVarChar, 200) { Direction = ParameterDirection.Output };
+                        cmd.Parameters.Add(pPesan);
+
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        LoadData();
+                        BersihkanForm();
+                    }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Gagal menghapus: " + ex.Message +
-                        "\n(Lapangan masih dipakai di Jadwal/Reservasi)", "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
             }
         }
 
-        // ══════════════════════════════════════════════════════════
-        //  BAGIAN E — Tombol Tampilkan Data
-        // ══════════════════════════════════════════════════════════
+        private void btnCari_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("sp_SearchLapangan", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Keyword", txtCari.Text.Trim());
+
+                    SqlParameter pJml = new SqlParameter("@JumlahHasil", SqlDbType.Int) { Direction = ParameterDirection.Output };
+                    cmd.Parameters.Add(pJml);
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    dtLapangan = new DataTable();
+                    da.Fill(dtLapangan);
+                    bindingSource.DataSource = dtLapangan;
+                }
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        // --- FUNGSI RESET DATA (Modul 9 Langkah 9) ---
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                // Urutan penghapusan harus dari tabel 'Anak' ke tabel 'Induk'
+                string query = @"
+        IF OBJECT_ID('dbo.Lapangan_Backup') IS NOT NULL
+        BEGIN
+            -- 1. Hapus data di tabel yang memiliki Relasi (Foreign Key) dulu
+            DELETE FROM dbo.Reservasi;
+            DELETE FROM dbo.Jadwal;
+            
+            -- 2. Baru hapus data di tabel utama
+            DELETE FROM dbo.Lapangan;
+            
+            -- 3. Aktifkan Identity Insert agar ID dari backup bisa masuk
+            SET IDENTITY_INSERT dbo.Lapangan ON;
+            
+            INSERT INTO dbo.Lapangan (LapanganID, NamaLapangan, Lokasi, Status)
+            SELECT LapanganID, NamaLapangan, Lokasi, Status FROM dbo.Lapangan_Backup;
+            
+            SET IDENTITY_INSERT dbo.Lapangan OFF;
+        END";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            LoadData();
+            MessageBox.Show("Data berhasil direset!");
+        }
+
+        // --- FUNGSI TEST INJECTION (Modul 9 Tahap 1 & 2) ---
+        private void btnTestInjection_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    // KERENTANAN: String Concatenation
+                    string query = "UPDATE Lapangan SET Lokasi='DIHACK' WHERE NamaLapangan='" + txtNamaLapangan.Text + "'";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        int result = cmd.ExecuteNonQuery();
+                        MessageBox.Show(result + " baris terupdate!", "Hasil Injeksi");
+                    }
+                }
+                LoadData();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
         private void btnTampilkanData_Click(object sender, EventArgs e)
         {
             txtCari.Clear();
-            TampilkanDataDenganDataReader();
+            LoadData();
         }
 
-        // ══════════════════════════════════════════════════════════
-        //  BAGIAN E — Pencarian
-        // ══════════════════════════════════════════════════════════
-        private void btnCari_Click(object sender, EventArgs e)
-        {
-            string keyword = txtCari.Text.Trim();
-
-            dgvLapangan.Rows.Clear();
-            if (dgvLapangan.Columns.Count == 0) SetupKolomDGV();
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    SqlCommand cmd = new SqlCommand(
-                        @"SELECT LapanganID, NamaLapangan, Lokasi, Status FROM Lapangan
-                          WHERE NamaLapangan LIKE @cari OR Lokasi LIKE @cari OR Status LIKE @cari
-                          ORDER BY LapanganID", conn);
-                    cmd.Parameters.AddWithValue("@cari", "%" + keyword + "%");
-                    conn.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    int jumlah = 0;
-                    while (reader.Read())
-                    {
-                        dgvLapangan.Rows.Add(
-                            reader["LapanganID"].ToString(),
-                            reader["NamaLapangan"].ToString(),
-                            reader["Lokasi"].ToString(),
-                            reader["Status"].ToString()
-                        );
-                        jumlah++;
-                    }
-                    reader.Close();
-
-                    lblTotal.Text = jumlah == 0
-                        ? "Tidak ditemukan untuk: \"" + keyword + "\""
-                        : $"Hasil pencarian: {jumlah} data ditemukan";
-
-                    if (jumlah == 0)
-                        MessageBox.Show("Data tidak ditemukan.", "Pencarian",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error saat mencari: " + ex.Message, "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        // ══════════════════════════════════════════════════════════
-        //  BAGIAN E — Klik baris DGV → isi TextBox
-        // ══════════════════════════════════════════════════════════
         private void dgvLapangan_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 || e.RowIndex >= dgvLapangan.Rows.Count) return;
-            DataGridViewRow row  = dgvLapangan.Rows[e.RowIndex];
-            txtLapanganID.Text   = row.Cells["LapanganID"].Value?.ToString()   ?? "";
-            txtNamaLapangan.Text = row.Cells["NamaLapangan"].Value?.ToString() ?? "";
-            txtLokasi.Text       = row.Cells["Lokasi"].Value?.ToString()       ?? "";
-            cmbStatus.Text       = row.Cells["Status"].Value?.ToString()       ?? "";
+            if (e.RowIndex >= 0 && e.RowIndex < bindingSource.Count)
+                bindingSource.Position = e.RowIndex;
         }
+        #endregion
 
         private void BersihkanForm()
         {
@@ -320,6 +331,13 @@ namespace ReservasiFutsal02
             txtNamaLapangan.Clear();
             txtLokasi.Clear();
             cmbStatus.SelectedIndex = -1;
+            txtCari.Clear();
+            if (bindingSource.Count > 0) bindingSource.Position = 0;
+        }
+
+        private void txtNamaLapangan_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

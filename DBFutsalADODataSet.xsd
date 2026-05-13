@@ -1,0 +1,407 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DBFutsalADODataSet" targetNamespace="http://tempuri.org/DBFutsalADODataSet.xsd" xmlns:mstns="http://tempuri.org/DBFutsalADODataSet.xsd" xmlns="http://tempuri.org/DBFutsalADODataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="DBFutsalADOConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="DBFutsalADOConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ReservasiFutsal02.Properties.Settings.GlobalReference.Default.DBFutsalADOConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_JadwalTableAdapter" GeneratorDataComponentClassName="vw_JadwalTableAdapter" Name="vw_Jadwal" UserDataComponentName="vw_JadwalTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DBFutsalADOConnectionString (Settings)" DbObjectName="DBFutsalADO.dbo.vw_Jadwal" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT JadwalID, LapanganID, NamaLapangan, Tanggal, Jam, Status FROM dbo.vw_Jadwal</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="JadwalID" DataSetColumn="JadwalID" />
+              <Mapping SourceColumn="LapanganID" DataSetColumn="LapanganID" />
+              <Mapping SourceColumn="NamaLapangan" DataSetColumn="NamaLapangan" />
+              <Mapping SourceColumn="Tanggal" DataSetColumn="Tanggal" />
+              <Mapping SourceColumn="Jam" DataSetColumn="Jam" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_JadwalTersediaTableAdapter" GeneratorDataComponentClassName="vw_JadwalTersediaTableAdapter" Name="vw_JadwalTersedia" UserDataComponentName="vw_JadwalTersediaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DBFutsalADOConnectionString (Settings)" DbObjectName="DBFutsalADO.dbo.vw_JadwalTersedia" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT JadwalID, LapanganID, NamaLapangan, Lokasi, Tanggal, Jam, Status FROM dbo.vw_JadwalTersedia</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="JadwalID" DataSetColumn="JadwalID" />
+              <Mapping SourceColumn="LapanganID" DataSetColumn="LapanganID" />
+              <Mapping SourceColumn="NamaLapangan" DataSetColumn="NamaLapangan" />
+              <Mapping SourceColumn="Lokasi" DataSetColumn="Lokasi" />
+              <Mapping SourceColumn="Tanggal" DataSetColumn="Tanggal" />
+              <Mapping SourceColumn="Jam" DataSetColumn="Jam" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_LapanganTableAdapter" GeneratorDataComponentClassName="vw_LapanganTableAdapter" Name="vw_Lapangan" UserDataComponentName="vw_LapanganTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DBFutsalADOConnectionString (Settings)" DbObjectName="DBFutsalADO.dbo.vw_Lapangan" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT LapanganID, NamaLapangan, Lokasi, Status FROM dbo.vw_Lapangan</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="LapanganID" DataSetColumn="LapanganID" />
+              <Mapping SourceColumn="NamaLapangan" DataSetColumn="NamaLapangan" />
+              <Mapping SourceColumn="Lokasi" DataSetColumn="Lokasi" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_ReservasiTableAdapter" GeneratorDataComponentClassName="vw_ReservasiTableAdapter" Name="vw_Reservasi" UserDataComponentName="vw_ReservasiTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DBFutsalADOConnectionString (Settings)" DbObjectName="DBFutsalADO.dbo.vw_Reservasi" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ReservasiID, UserID, NamaPengguna, Username, LapanganID, NamaLapangan, JadwalID, JadwalInfo, TglReservasi, Status FROM dbo.vw_Reservasi</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ReservasiID" DataSetColumn="ReservasiID" />
+              <Mapping SourceColumn="UserID" DataSetColumn="UserID" />
+              <Mapping SourceColumn="NamaPengguna" DataSetColumn="NamaPengguna" />
+              <Mapping SourceColumn="Username" DataSetColumn="Username" />
+              <Mapping SourceColumn="LapanganID" DataSetColumn="LapanganID" />
+              <Mapping SourceColumn="NamaLapangan" DataSetColumn="NamaLapangan" />
+              <Mapping SourceColumn="JadwalID" DataSetColumn="JadwalID" />
+              <Mapping SourceColumn="JadwalInfo" DataSetColumn="JadwalInfo" />
+              <Mapping SourceColumn="TglReservasi" DataSetColumn="TglReservasi" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_RiwayatUserTableAdapter" GeneratorDataComponentClassName="vw_RiwayatUserTableAdapter" Name="vw_RiwayatUser" UserDataComponentName="vw_RiwayatUserTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DBFutsalADOConnectionString (Settings)" DbObjectName="DBFutsalADO.dbo.vw_RiwayatUser" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ReservasiID, UserID, NamaLapangan, JadwalInfo, TglReservasi, Status, JadwalID FROM dbo.vw_RiwayatUser</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ReservasiID" DataSetColumn="ReservasiID" />
+              <Mapping SourceColumn="UserID" DataSetColumn="UserID" />
+              <Mapping SourceColumn="NamaLapangan" DataSetColumn="NamaLapangan" />
+              <Mapping SourceColumn="JadwalInfo" DataSetColumn="JadwalInfo" />
+              <Mapping SourceColumn="TglReservasi" DataSetColumn="TglReservasi" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+              <Mapping SourceColumn="JadwalID" DataSetColumn="JadwalID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vwReservasiTableAdapter" GeneratorDataComponentClassName="vwReservasiTableAdapter" Name="vwReservasi" UserDataComponentName="vwReservasiTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DBFutsalADOConnectionString (Settings)" DbObjectName="DBFutsalADO.dbo.vwReservasi" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ReservasiID, UserID, Pengguna, LapanganID, NamaLapangan, JadwalID, JadwalInfo, TglReservasi, Status FROM dbo.vwReservasi</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ReservasiID" DataSetColumn="ReservasiID" />
+              <Mapping SourceColumn="UserID" DataSetColumn="UserID" />
+              <Mapping SourceColumn="Pengguna" DataSetColumn="Pengguna" />
+              <Mapping SourceColumn="LapanganID" DataSetColumn="LapanganID" />
+              <Mapping SourceColumn="NamaLapangan" DataSetColumn="NamaLapangan" />
+              <Mapping SourceColumn="JadwalID" DataSetColumn="JadwalID" />
+              <Mapping SourceColumn="JadwalInfo" DataSetColumn="JadwalInfo" />
+              <Mapping SourceColumn="TglReservasi" DataSetColumn="TglReservasi" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DBFutsalADODataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_UserDSName="DBFutsalADODataSet" msprop:Generator_DataSetName="DBFutsalADODataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vw_Jadwal" msprop:Generator_RowEvHandlerName="vw_JadwalRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_JadwalRowDeleted" msprop:Generator_RowDeletingName="vw_JadwalRowDeleting" msprop:Generator_RowEvArgName="vw_JadwalRowChangeEvent" msprop:Generator_TablePropName="vw_Jadwal" msprop:Generator_RowChangedName="vw_JadwalRowChanged" msprop:Generator_RowChangingName="vw_JadwalRowChanging" msprop:Generator_TableClassName="vw_JadwalDataTable" msprop:Generator_RowClassName="vw_JadwalRow" msprop:Generator_TableVarName="tablevw_Jadwal" msprop:Generator_UserTableName="vw_Jadwal">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="JadwalID" msprop:Generator_ColumnPropNameInRow="JadwalID" msprop:Generator_ColumnPropNameInTable="JadwalIDColumn" msprop:Generator_ColumnVarNameInTable="columnJadwalID" msprop:Generator_UserColumnName="JadwalID" type="xs:int" />
+              <xs:element name="LapanganID" msprop:Generator_ColumnPropNameInRow="LapanganID" msprop:Generator_ColumnPropNameInTable="LapanganIDColumn" msprop:Generator_ColumnVarNameInTable="columnLapanganID" msprop:Generator_UserColumnName="LapanganID" type="xs:int" />
+              <xs:element name="NamaLapangan" msprop:Generator_ColumnPropNameInRow="NamaLapangan" msprop:Generator_ColumnPropNameInTable="NamaLapanganColumn" msprop:Generator_ColumnVarNameInTable="columnNamaLapangan" msprop:Generator_UserColumnName="NamaLapangan">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Tanggal" msprop:Generator_ColumnPropNameInRow="Tanggal" msprop:Generator_ColumnPropNameInTable="TanggalColumn" msprop:Generator_ColumnVarNameInTable="columnTanggal" msprop:Generator_UserColumnName="Tanggal" type="xs:dateTime" />
+              <xs:element name="Jam" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="Jam" msprop:Generator_ColumnPropNameInTable="JamColumn" msprop:Generator_ColumnVarNameInTable="columnJam" msprop:Generator_UserColumnName="Jam" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Status" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_UserColumnName="Status">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_JadwalTersedia" msprop:Generator_RowEvHandlerName="vw_JadwalTersediaRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_JadwalTersediaRowDeleted" msprop:Generator_RowDeletingName="vw_JadwalTersediaRowDeleting" msprop:Generator_RowEvArgName="vw_JadwalTersediaRowChangeEvent" msprop:Generator_TablePropName="vw_JadwalTersedia" msprop:Generator_RowChangedName="vw_JadwalTersediaRowChanged" msprop:Generator_RowChangingName="vw_JadwalTersediaRowChanging" msprop:Generator_TableClassName="vw_JadwalTersediaDataTable" msprop:Generator_RowClassName="vw_JadwalTersediaRow" msprop:Generator_TableVarName="tablevw_JadwalTersedia" msprop:Generator_UserTableName="vw_JadwalTersedia">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="JadwalID" msprop:Generator_ColumnPropNameInRow="JadwalID" msprop:Generator_ColumnPropNameInTable="JadwalIDColumn" msprop:Generator_ColumnVarNameInTable="columnJadwalID" msprop:Generator_UserColumnName="JadwalID" type="xs:int" />
+              <xs:element name="LapanganID" msprop:Generator_ColumnPropNameInRow="LapanganID" msprop:Generator_ColumnPropNameInTable="LapanganIDColumn" msprop:Generator_ColumnVarNameInTable="columnLapanganID" msprop:Generator_UserColumnName="LapanganID" type="xs:int" />
+              <xs:element name="NamaLapangan" msprop:Generator_ColumnPropNameInRow="NamaLapangan" msprop:Generator_ColumnPropNameInTable="NamaLapanganColumn" msprop:Generator_ColumnVarNameInTable="columnNamaLapangan" msprop:Generator_UserColumnName="NamaLapangan">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Lokasi" msprop:Generator_ColumnPropNameInRow="Lokasi" msprop:Generator_ColumnPropNameInTable="LokasiColumn" msprop:Generator_ColumnVarNameInTable="columnLokasi" msprop:Generator_UserColumnName="Lokasi">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Tanggal" msprop:Generator_ColumnPropNameInRow="Tanggal" msprop:Generator_ColumnPropNameInTable="TanggalColumn" msprop:Generator_ColumnVarNameInTable="columnTanggal" msprop:Generator_UserColumnName="Tanggal" type="xs:dateTime" />
+              <xs:element name="Jam" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="Jam" msprop:Generator_ColumnPropNameInTable="JamColumn" msprop:Generator_ColumnVarNameInTable="columnJam" msprop:Generator_UserColumnName="Jam" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Status" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_UserColumnName="Status">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_Lapangan" msprop:Generator_RowEvHandlerName="vw_LapanganRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_LapanganRowDeleted" msprop:Generator_RowDeletingName="vw_LapanganRowDeleting" msprop:Generator_RowEvArgName="vw_LapanganRowChangeEvent" msprop:Generator_TablePropName="vw_Lapangan" msprop:Generator_RowChangedName="vw_LapanganRowChanged" msprop:Generator_RowChangingName="vw_LapanganRowChanging" msprop:Generator_TableClassName="vw_LapanganDataTable" msprop:Generator_RowClassName="vw_LapanganRow" msprop:Generator_TableVarName="tablevw_Lapangan" msprop:Generator_UserTableName="vw_Lapangan">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="LapanganID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="LapanganID" msprop:Generator_ColumnPropNameInTable="LapanganIDColumn" msprop:Generator_ColumnVarNameInTable="columnLapanganID" msprop:Generator_UserColumnName="LapanganID" type="xs:int" />
+              <xs:element name="NamaLapangan" msprop:Generator_ColumnPropNameInRow="NamaLapangan" msprop:Generator_ColumnPropNameInTable="NamaLapanganColumn" msprop:Generator_ColumnVarNameInTable="columnNamaLapangan" msprop:Generator_UserColumnName="NamaLapangan">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Lokasi" msprop:Generator_ColumnPropNameInRow="Lokasi" msprop:Generator_ColumnPropNameInTable="LokasiColumn" msprop:Generator_ColumnVarNameInTable="columnLokasi" msprop:Generator_UserColumnName="Lokasi">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Status" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_UserColumnName="Status">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_Reservasi" msprop:Generator_RowEvHandlerName="vw_ReservasiRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_ReservasiRowDeleted" msprop:Generator_RowDeletingName="vw_ReservasiRowDeleting" msprop:Generator_RowEvArgName="vw_ReservasiRowChangeEvent" msprop:Generator_TablePropName="vw_Reservasi" msprop:Generator_RowChangedName="vw_ReservasiRowChanged" msprop:Generator_RowChangingName="vw_ReservasiRowChanging" msprop:Generator_TableClassName="vw_ReservasiDataTable" msprop:Generator_RowClassName="vw_ReservasiRow" msprop:Generator_TableVarName="tablevw_Reservasi" msprop:Generator_UserTableName="vw_Reservasi">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ReservasiID" msprop:Generator_ColumnPropNameInRow="ReservasiID" msprop:Generator_ColumnPropNameInTable="ReservasiIDColumn" msprop:Generator_ColumnVarNameInTable="columnReservasiID" msprop:Generator_UserColumnName="ReservasiID" type="xs:int" />
+              <xs:element name="UserID" msprop:Generator_ColumnPropNameInRow="UserID" msprop:Generator_ColumnPropNameInTable="UserIDColumn" msprop:Generator_ColumnVarNameInTable="columnUserID" msprop:Generator_UserColumnName="UserID" type="xs:int" />
+              <xs:element name="NamaPengguna" msprop:Generator_ColumnPropNameInRow="NamaPengguna" msprop:Generator_ColumnPropNameInTable="NamaPenggunaColumn" msprop:Generator_ColumnVarNameInTable="columnNamaPengguna" msprop:Generator_UserColumnName="NamaPengguna">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Username" msprop:Generator_ColumnPropNameInRow="Username" msprop:Generator_ColumnPropNameInTable="UsernameColumn" msprop:Generator_ColumnVarNameInTable="columnUsername" msprop:Generator_UserColumnName="Username">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LapanganID" msprop:Generator_ColumnPropNameInRow="LapanganID" msprop:Generator_ColumnPropNameInTable="LapanganIDColumn" msprop:Generator_ColumnVarNameInTable="columnLapanganID" msprop:Generator_UserColumnName="LapanganID" type="xs:int" />
+              <xs:element name="NamaLapangan" msprop:Generator_ColumnPropNameInRow="NamaLapangan" msprop:Generator_ColumnPropNameInTable="NamaLapanganColumn" msprop:Generator_ColumnVarNameInTable="columnNamaLapangan" msprop:Generator_UserColumnName="NamaLapangan">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="JadwalID" msprop:Generator_ColumnPropNameInRow="JadwalID" msprop:Generator_ColumnPropNameInTable="JadwalIDColumn" msprop:Generator_ColumnVarNameInTable="columnJadwalID" msprop:Generator_UserColumnName="JadwalID" type="xs:int" />
+              <xs:element name="JadwalInfo" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="JadwalInfo" msprop:Generator_ColumnPropNameInTable="JadwalInfoColumn" msprop:Generator_ColumnVarNameInTable="columnJadwalInfo" msprop:Generator_UserColumnName="JadwalInfo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="16" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TglReservasi" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="TglReservasi" msprop:Generator_ColumnPropNameInTable="TglReservasiColumn" msprop:Generator_ColumnVarNameInTable="columnTglReservasi" msprop:Generator_UserColumnName="TglReservasi" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="16" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Status" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_UserColumnName="Status">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_RiwayatUser" msprop:Generator_RowEvHandlerName="vw_RiwayatUserRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_RiwayatUserRowDeleted" msprop:Generator_RowDeletingName="vw_RiwayatUserRowDeleting" msprop:Generator_RowEvArgName="vw_RiwayatUserRowChangeEvent" msprop:Generator_TablePropName="vw_RiwayatUser" msprop:Generator_RowChangedName="vw_RiwayatUserRowChanged" msprop:Generator_RowChangingName="vw_RiwayatUserRowChanging" msprop:Generator_TableClassName="vw_RiwayatUserDataTable" msprop:Generator_RowClassName="vw_RiwayatUserRow" msprop:Generator_TableVarName="tablevw_RiwayatUser" msprop:Generator_UserTableName="vw_RiwayatUser">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ReservasiID" msprop:Generator_ColumnPropNameInRow="ReservasiID" msprop:Generator_ColumnPropNameInTable="ReservasiIDColumn" msprop:Generator_ColumnVarNameInTable="columnReservasiID" msprop:Generator_UserColumnName="ReservasiID" type="xs:int" />
+              <xs:element name="UserID" msprop:Generator_ColumnPropNameInRow="UserID" msprop:Generator_ColumnPropNameInTable="UserIDColumn" msprop:Generator_ColumnVarNameInTable="columnUserID" msprop:Generator_UserColumnName="UserID" type="xs:int" />
+              <xs:element name="NamaLapangan" msprop:Generator_ColumnPropNameInRow="NamaLapangan" msprop:Generator_ColumnPropNameInTable="NamaLapanganColumn" msprop:Generator_ColumnVarNameInTable="columnNamaLapangan" msprop:Generator_UserColumnName="NamaLapangan">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="JadwalInfo" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="JadwalInfo" msprop:Generator_ColumnPropNameInTable="JadwalInfoColumn" msprop:Generator_ColumnVarNameInTable="columnJadwalInfo" msprop:Generator_UserColumnName="JadwalInfo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="16" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TglReservasi" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="TglReservasi" msprop:Generator_ColumnPropNameInTable="TglReservasiColumn" msprop:Generator_ColumnVarNameInTable="columnTglReservasi" msprop:Generator_UserColumnName="TglReservasi" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="16" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Status" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_UserColumnName="Status">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="JadwalID" msprop:Generator_ColumnPropNameInRow="JadwalID" msprop:Generator_ColumnPropNameInTable="JadwalIDColumn" msprop:Generator_ColumnVarNameInTable="columnJadwalID" msprop:Generator_UserColumnName="JadwalID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vwReservasi" msprop:Generator_RowEvHandlerName="vwReservasiRowChangeEventHandler" msprop:Generator_RowDeletedName="vwReservasiRowDeleted" msprop:Generator_RowDeletingName="vwReservasiRowDeleting" msprop:Generator_RowEvArgName="vwReservasiRowChangeEvent" msprop:Generator_TablePropName="vwReservasi" msprop:Generator_RowChangedName="vwReservasiRowChanged" msprop:Generator_RowChangingName="vwReservasiRowChanging" msprop:Generator_TableClassName="vwReservasiDataTable" msprop:Generator_RowClassName="vwReservasiRow" msprop:Generator_TableVarName="tablevwReservasi" msprop:Generator_UserTableName="vwReservasi">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ReservasiID" msprop:Generator_ColumnPropNameInRow="ReservasiID" msprop:Generator_ColumnPropNameInTable="ReservasiIDColumn" msprop:Generator_ColumnVarNameInTable="columnReservasiID" msprop:Generator_UserColumnName="ReservasiID" type="xs:int" />
+              <xs:element name="UserID" msprop:Generator_ColumnPropNameInRow="UserID" msprop:Generator_ColumnPropNameInTable="UserIDColumn" msprop:Generator_ColumnVarNameInTable="columnUserID" msprop:Generator_UserColumnName="UserID" type="xs:int" />
+              <xs:element name="Pengguna" msprop:Generator_ColumnPropNameInRow="Pengguna" msprop:Generator_ColumnPropNameInTable="PenggunaColumn" msprop:Generator_ColumnVarNameInTable="columnPengguna" msprop:Generator_UserColumnName="Pengguna">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LapanganID" msprop:Generator_ColumnPropNameInRow="LapanganID" msprop:Generator_ColumnPropNameInTable="LapanganIDColumn" msprop:Generator_ColumnVarNameInTable="columnLapanganID" msprop:Generator_UserColumnName="LapanganID" type="xs:int" />
+              <xs:element name="NamaLapangan" msprop:Generator_ColumnPropNameInRow="NamaLapangan" msprop:Generator_ColumnPropNameInTable="NamaLapanganColumn" msprop:Generator_ColumnVarNameInTable="columnNamaLapangan" msprop:Generator_UserColumnName="NamaLapangan">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="JadwalID" msprop:Generator_ColumnPropNameInRow="JadwalID" msprop:Generator_ColumnPropNameInTable="JadwalIDColumn" msprop:Generator_ColumnVarNameInTable="columnJadwalID" msprop:Generator_UserColumnName="JadwalID" type="xs:int" />
+              <xs:element name="JadwalInfo" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="JadwalInfo" msprop:Generator_ColumnPropNameInTable="JadwalInfoColumn" msprop:Generator_ColumnVarNameInTable="columnJadwalInfo" msprop:Generator_UserColumnName="JadwalInfo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="16" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TglReservasi" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="TglReservasi" msprop:Generator_ColumnPropNameInTable="TglReservasiColumn" msprop:Generator_ColumnVarNameInTable="columnTglReservasi" msprop:Generator_UserColumnName="TglReservasi" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="16" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Status" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_UserColumnName="Status">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_Jadwal" />
+      <xs:field xpath="mstns:JadwalID" />
+    </xs:unique>
+    <xs:unique name="vw_JadwalTersedia_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_JadwalTersedia" />
+      <xs:field xpath="mstns:JadwalID" />
+    </xs:unique>
+    <xs:unique name="vw_Lapangan_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_Lapangan" />
+      <xs:field xpath="mstns:LapanganID" />
+    </xs:unique>
+    <xs:unique name="vw_Reservasi_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_Reservasi" />
+      <xs:field xpath="mstns:ReservasiID" />
+    </xs:unique>
+    <xs:unique name="vw_RiwayatUser_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_RiwayatUser" />
+      <xs:field xpath="mstns:ReservasiID" />
+    </xs:unique>
+    <xs:unique name="vwReservasi_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vwReservasi" />
+      <xs:field xpath="mstns:ReservasiID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

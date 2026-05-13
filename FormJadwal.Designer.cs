@@ -247,7 +247,7 @@ namespace ReservasiFutsal02
             this.dgvJadwal.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvJadwal.Location = new System.Drawing.Point(10, 43);
             this.dgvJadwal.Name = "dgvJadwal";
-            this.dgvJadwal.Size = new System.Drawing.Size(587, 448);
+            this.dgvJadwal.Size = new System.Drawing.Size(587, 429);
             this.dgvJadwal.TabIndex = 2;
             this.dgvJadwal.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvJadwal_CellClick);
             // 

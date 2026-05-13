@@ -14,11 +14,16 @@ namespace ReservasiFutsal02
 
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnlForm = new System.Windows.Forms.Panel();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.btnTestInjection = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
             this.lblLapanganID = new System.Windows.Forms.Label();
             this.txtLapanganID = new System.Windows.Forms.TextBox();
+            this.vwLapanganBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dBFutsalADODataSet = new ReservasiFutsal02.DBFutsalADODataSet();
             this.lblNama = new System.Windows.Forms.Label();
             this.txtNamaLapangan = new System.Windows.Forms.TextBox();
             this.lblLokasi = new System.Windows.Forms.Label();
@@ -33,13 +38,18 @@ namespace ReservasiFutsal02
             this.txtCari = new System.Windows.Forms.TextBox();
             this.btnCari = new System.Windows.Forms.Button();
             this.dgvLapangan = new System.Windows.Forms.DataGridView();
+            this.vw_LapanganTableAdapter = new ReservasiFutsal02.DBFutsalADODataSetTableAdapters.vw_LapanganTableAdapter();
             this.pnlForm.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.vwLapanganBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBFutsalADODataSet)).BeginInit();
             this.pnlGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLapangan)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlForm
             // 
+            this.pnlForm.Controls.Add(this.btnReset);
+            this.pnlForm.Controls.Add(this.btnTestInjection);
             this.pnlForm.Controls.Add(this.lblTitle);
             this.pnlForm.Controls.Add(this.lblTotal);
             this.pnlForm.Controls.Add(this.lblLapanganID);
@@ -59,6 +69,26 @@ namespace ReservasiFutsal02
             this.pnlForm.Name = "pnlForm";
             this.pnlForm.Size = new System.Drawing.Size(231, 503);
             this.pnlForm.TabIndex = 1;
+            // 
+            // btnReset
+            // 
+            this.btnReset.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+            this.btnReset.Location = new System.Drawing.Point(118, 309);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(99, 31);
+            this.btnReset.TabIndex = 17;
+            this.btnReset.Text = "❤️  Reset";
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
+            // btnTestInjection
+            // 
+            this.btnTestInjection.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+            this.btnTestInjection.Location = new System.Drawing.Point(10, 309);
+            this.btnTestInjection.Name = "btnTestInjection";
+            this.btnTestInjection.Size = new System.Drawing.Size(99, 31);
+            this.btnTestInjection.TabIndex = 16;
+            this.btnTestInjection.Text = "🗿  Inject";
+            this.btnTestInjection.Click += new System.EventHandler(this.btnTestInjection_Click);
             // 
             // lblTitle
             // 
@@ -90,11 +120,22 @@ namespace ReservasiFutsal02
             // 
             // txtLapanganID
             // 
+            this.txtLapanganID.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.vwLapanganBindingSource, "LapanganID", true));
             this.txtLapanganID.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtLapanganID.Location = new System.Drawing.Point(10, 82);
             this.txtLapanganID.Name = "txtLapanganID";
             this.txtLapanganID.Size = new System.Drawing.Size(103, 23);
             this.txtLapanganID.TabIndex = 3;
+            // 
+            // vwLapanganBindingSource
+            // 
+            this.vwLapanganBindingSource.DataMember = "vw_Lapangan";
+            this.vwLapanganBindingSource.DataSource = this.dBFutsalADODataSet;
+            // 
+            // dBFutsalADODataSet
+            // 
+            this.dBFutsalADODataSet.DataSetName = "DBFutsalADODataSet";
+            this.dBFutsalADODataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // lblNama
             // 
@@ -108,10 +149,12 @@ namespace ReservasiFutsal02
             // 
             // txtNamaLapangan
             // 
+            this.txtNamaLapangan.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.vwLapanganBindingSource, "NamaLapangan", true));
             this.txtNamaLapangan.Location = new System.Drawing.Point(10, 133);
             this.txtNamaLapangan.Name = "txtNamaLapangan";
             this.txtNamaLapangan.Size = new System.Drawing.Size(211, 20);
             this.txtNamaLapangan.TabIndex = 5;
+            this.txtNamaLapangan.TextChanged += new System.EventHandler(this.txtNamaLapangan_TextChanged);
             // 
             // lblLokasi
             // 
@@ -125,6 +168,7 @@ namespace ReservasiFutsal02
             // 
             // txtLokasi
             // 
+            this.txtLokasi.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.vwLapanganBindingSource, "Lokasi", true));
             this.txtLokasi.Location = new System.Drawing.Point(10, 183);
             this.txtLokasi.Name = "txtLokasi";
             this.txtLokasi.Size = new System.Drawing.Size(211, 20);
@@ -142,6 +186,7 @@ namespace ReservasiFutsal02
             // 
             // cmbStatus
             // 
+            this.cmbStatus.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.vwLapanganBindingSource, "Status", true));
             this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStatus.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.cmbStatus.Location = new System.Drawing.Point(10, 233);
@@ -172,7 +217,7 @@ namespace ReservasiFutsal02
             // btnHapus
             // 
             this.btnHapus.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            this.btnHapus.Location = new System.Drawing.Point(10, 309);
+            this.btnHapus.Location = new System.Drawing.Point(10, 346);
             this.btnHapus.Name = "btnHapus";
             this.btnHapus.Size = new System.Drawing.Size(99, 31);
             this.btnHapus.TabIndex = 12;
@@ -182,7 +227,7 @@ namespace ReservasiFutsal02
             // btnTampilkanData
             // 
             this.btnTampilkanData.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            this.btnTampilkanData.Location = new System.Drawing.Point(118, 309);
+            this.btnTampilkanData.Location = new System.Drawing.Point(118, 346);
             this.btnTampilkanData.Name = "btnTampilkanData";
             this.btnTampilkanData.Size = new System.Drawing.Size(99, 31);
             this.btnTampilkanData.TabIndex = 13;
@@ -226,9 +271,13 @@ namespace ReservasiFutsal02
             this.dgvLapangan.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvLapangan.Location = new System.Drawing.Point(10, 43);
             this.dgvLapangan.Name = "dgvLapangan";
-            this.dgvLapangan.Size = new System.Drawing.Size(587, 448);
+            this.dgvLapangan.Size = new System.Drawing.Size(587, 430);
             this.dgvLapangan.TabIndex = 2;
             this.dgvLapangan.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLapangan_CellClick);
+            // 
+            // vw_LapanganTableAdapter
+            // 
+            this.vw_LapanganTableAdapter.ClearBeforeFill = true;
             // 
             // FormLapangan
             // 
@@ -242,6 +291,8 @@ namespace ReservasiFutsal02
             this.Load += new System.EventHandler(this.FormLapangan_Load);
             this.pnlForm.ResumeLayout(false);
             this.pnlForm.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.vwLapanganBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBFutsalADODataSet)).EndInit();
             this.pnlGrid.ResumeLayout(false);
             this.pnlGrid.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLapangan)).EndInit();
@@ -270,5 +321,10 @@ namespace ReservasiFutsal02
         private System.Windows.Forms.TextBox         txtCari;
         private System.Windows.Forms.Button          btnCari;
         private System.Windows.Forms.DataGridView    dgvLapangan;
+        private System.Windows.Forms.Button btnTestInjection;
+        private System.Windows.Forms.Button btnReset;
+        private DBFutsalADODataSet dBFutsalADODataSet;
+        private System.Windows.Forms.BindingSource vwLapanganBindingSource;
+        private DBFutsalADODataSetTableAdapters.vw_LapanganTableAdapter vw_LapanganTableAdapter;
     }
 }

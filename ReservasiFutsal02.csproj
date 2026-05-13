@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -42,7 +43,17 @@
   </ItemGroup>
   <ItemGroup>
     <!-- Helper & Theme -->
+    <Compile Include="DBFutsalADODataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBFutsalADODataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="UITheme.cs" />
     <Compile Include="LogoHelper.cs" />
     <Compile Include="LogoBytes.cs" />
@@ -110,12 +121,31 @@
     <EmbeddedResource Include="FormLapangan.resx">
       <DependentUpon>FormLapangan.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormRegister.resx">
+      <DependentUpon>FormRegister.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormReservasi.resx">
       <DependentUpon>FormReservasi.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="DBFutsalADODataSet.xsc">
+      <DependentUpon>DBFutsalADODataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DBFutsalADODataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DBFutsalADODataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DBFutsalADODataSet.xss">
+      <DependentUpon>DBFutsalADODataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
