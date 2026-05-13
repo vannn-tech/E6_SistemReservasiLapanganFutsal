@@ -261,7 +261,7 @@ namespace ReservasiFutsal02
         }
 
         // --- FUNGSI RESET DATA (Modul 9 Langkah 9) ---
-        private void btnReset_Click(object sender, EventArgs e)
+        private void btnReset_Click(object sender, EventArgs e) // Event handler untuk tombol Reset, menghapus data di tabel Lapangan dan mengisi ulang dari backup
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
