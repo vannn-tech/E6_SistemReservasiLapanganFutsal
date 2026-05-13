@@ -27,7 +27,7 @@ namespace ReservasiFutsal02
             SetupGrid();
             SetupNavigator();
 
-            // Hubungkan BindingSource ke DGV
+            // Inisialisasi BindingSource dan hubungkan dengan DataTable
             bindingSource.DataSource = dtLapangan;
             dgvLapangan.DataSource = bindingSource;
 
