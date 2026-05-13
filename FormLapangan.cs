@@ -112,6 +112,7 @@ namespace ReservasiFutsal02
 
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
+                        // Isi DataTable dengan hasil query dan hubungkan ke BindingSource
                         dtLapangan = new DataTable();
                         da.Fill(dtLapangan);
                         bindingSource.DataSource = dtLapangan;
