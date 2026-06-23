@@ -6,7 +6,7 @@ namespace ReservasiFutsal02
 {
     public partial class FormRegister : Form // Form untuk registrasi akun baru, hanya untuk role 'User'
     {
-        string connectionString = @"Data Source=LAPTOP-5R80O1Q5\MSSQLSERVER01;Initial Catalog=DBFutsalADO;Integrated Security=True"; // Ganti dengan string koneksi yang sesuai dengan database Anda 
+        string connectionString = @"Data Source=10.200.161.237\MSSQLSERVER01;Initial Catalog=DBFutsalADO;User ID=sa;Password=jovan1532006"; // Ganti dengan string koneksi yang sesuai dengan database Anda 
 
         public FormRegister() // constructor untuk inisialisasi komponen form
         {

@@ -14,7 +14,7 @@
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -33,11 +33,34 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalDecisions.CrystalReports.Engine.1.0.0\lib\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalDecisions.ReportSource.1.0.0\lib\CrystalDecisions.ReportSource.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalDecisions.Shared.1.0.0\lib\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalDecisions.Windows.Forms.1.0.0\lib\CrystalDecisions.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader, Version=3.9.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>packages\ExcelDataReader.3.9.0\lib\net462\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet, Version=3.9.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>packages\ExcelDataReader.DataSet.3.9.0\lib\net462\ExcelDataReader.DataSet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
@@ -48,6 +71,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBFutsalADODataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="LaporanReservasi.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LaporanReservasi.rpt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -57,6 +87,9 @@
     <Compile Include="UITheme.cs" />
     <Compile Include="LogoHelper.cs" />
     <Compile Include="LogoBytes.cs" />
+    <Compile Include="AppLogger.cs" />
+    <Compile Include="SimplePdfWriter.cs" />
+    <Compile Include="ReservasiReportItem.cs" />
     <!-- FormDashboard -->
     <Compile Include="FormDashboard.cs">
       <SubType>Form</SubType>
@@ -113,6 +146,27 @@
     <Compile Include="FormUser.Designer.cs">
       <DependentUpon>FormUser.cs</DependentUpon>
     </Compile>
+    <!-- FormGrafik (Dashboard / Grafik — Modul 14) -->
+    <Compile Include="FormGrafik.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGrafik.Designer.cs">
+      <DependentUpon>FormGrafik.cs</DependentUpon>
+    </Compile>
+    <!-- FormLaporanReservasi (Reporting — Modul 13) -->
+    <Compile Include="FormLaporanReservasi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLaporanReservasi.Designer.cs">
+      <DependentUpon>FormLaporanReservasi.cs</DependentUpon>
+    </Compile>
+    <!-- FormCetakLaporan (Crystal Report) -->
+    <Compile Include="OptionalCrystalReport\FormCetakLaporan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OptionalCrystalReport\FormCetakLaporan.Designer.cs">
+      <DependentUpon>FormCetakLaporan.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormJadwal.resx">
@@ -121,11 +175,22 @@
     <EmbeddedResource Include="FormLapangan.resx">
       <DependentUpon>FormLapangan.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormLaporanReservasi.resx">
+      <DependentUpon>FormLaporanReservasi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormRegister.resx">
       <DependentUpon>FormRegister.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormReservasi.resx">
       <DependentUpon>FormReservasi.cs</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="LaporanReservasi.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LaporanReservasi.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="OptionalCrystalReport\FormCetakLaporan.resx">
+      <DependentUpon>FormCetakLaporan.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -142,10 +207,14 @@
     <None Include="DBFutsalADODataSet.xss">
       <DependentUpon>DBFutsalADODataSet.xsd</DependentUpon>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

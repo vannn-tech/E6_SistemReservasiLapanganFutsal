@@ -6,7 +6,7 @@ namespace ReservasiFutsal02
 {
     public partial class FormLogin : Form
     {
-        string connectionString = @"Data Source=LAPTOP-5R80O1Q5\MSSQLSERVER01;Initial Catalog=DBFutsalADO;Integrated Security=True";
+        string connectionString = @"Data Source=10.200.161.237\MSSQLSERVER01;Initial Catalog=DBFutsalADO;User ID=sa;Password=jovan1532006";
 
         public FormLogin()
         {

@@ -8,7 +8,7 @@ namespace ReservasiFutsal02
     public partial class FormLapangan : Form
     {
         // Ganti Connection String sesuai dengan database kamu
-        string connectionString = @"Data Source=LAPTOP-5R80O1Q5\MSSQLSERVER01;Initial Catalog=DBFutsalADO;Integrated Security=True";
+        string connectionString = @"Data Source=10.200.161.237\MSSQLSERVER01;Initial Catalog=DBFutsalADO;User ID=sa;Password=jovan1532006";
 
         private BindingSource bindingSource = new BindingSource(); // BindingSource untuk mengelola data dan navigasi
         private DataTable dtLapangan = new DataTable(); // DataTable untuk menyimpan data lapangan yang diambil dari database
@@ -181,7 +181,19 @@ namespace ReservasiFutsal02
                     else MessageBox.Show("⚠ " + pPesan.Value.ToString());
                 }
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            // ── SqlException ditangani terpisah dari Exception umum (Modul 11)
+            //    supaya pesan asli dari SQL Server bisa dicatat ke LogError
+            //    sebelum ditampilkan ke pengguna.
+            catch (SqlException ex)
+            {
+                AppLogger.SimpanLog("FormLapangan.btnSimpan", ex.Message);
+                MessageBox.Show("SQL Error : " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                AppLogger.SimpanLog("FormLapangan.btnSimpan", ex.Message);
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnUbah_Click(object sender, EventArgs e)
@@ -208,7 +220,16 @@ namespace ReservasiFutsal02
                     MessageBox.Show("✅ Data diperbarui!");
                 }
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            catch (SqlException ex)
+            {
+                AppLogger.SimpanLog("FormLapangan.btnUbah", ex.Message);
+                MessageBox.Show("SQL Error : " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                AppLogger.SimpanLog("FormLapangan.btnUbah", ex.Message);
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnHapus_Click(object sender, EventArgs e)
@@ -234,7 +255,16 @@ namespace ReservasiFutsal02
                         BersihkanForm();
                     }
                 }
-                catch (Exception ex) { MessageBox.Show(ex.Message); }
+                catch (SqlException ex)
+                {
+                    AppLogger.SimpanLog("FormLapangan.btnHapus", ex.Message);
+                    MessageBox.Show("SQL Error : " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    AppLogger.SimpanLog("FormLapangan.btnHapus", ex.Message);
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
@@ -250,17 +280,24 @@ namespace ReservasiFutsal02
 
                     SqlParameter pJml = new SqlParameter("@JumlahHasil", SqlDbType.Int) { Direction = ParameterDirection.Output };
                     cmd.Parameters.Add(pJml);
-
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    
+                    SqlDataAdapter da = new SqlDataAdapter(cmd); 
                     dtLapangan = new DataTable();
-                    da.Fill(dtLapangan);
+                    da.Fill(dtLapangan); 
                     bindingSource.DataSource = dtLapangan;
                 }
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            catch (SqlException ex)
+            {
+                AppLogger.SimpanLog("FormLapangan.btnCari", ex.Message);
+                MessageBox.Show("SQL Error : " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                AppLogger.SimpanLog("FormLapangan.btnCari", ex.Message);
+                MessageBox.Show(ex.Message);
+            }
         }
-
-        // --- FUNGSI RESET DATA (Modul 9 Langkah 9) ---
         private void btnReset_Click(object sender, EventArgs e) // Event handler untuk tombol Reset, menghapus data di tabel Lapangan dan mengisi ulang dari backup
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -296,7 +333,7 @@ namespace ReservasiFutsal02
             MessageBox.Show("Data berhasil direset!");
         }
 
-        // --- FUNGSI TEST INJECTION (Modul 9 Tahap 1 & 2) ---
+        // --- FUNGSI TEST INJECTION (Modul 9 Tahap 1 & 2 / Modul 11 Praktikum 8) ---
         private void btnTestInjection_Click(object sender, EventArgs e) // Event handler untuk tombol Test Injection, melakukan update dengan query yang rentan terhadap SQL Injection menggunakan input dari txtNamaLapangan
         {
             try
@@ -304,7 +341,10 @@ namespace ReservasiFutsal02
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    // KERENTANAN: String Concatenation
+                    // KERENTANAN: String Concatenation (sengaja dibiarkan untuk demo).
+                    // Coba isi txtNamaLapangan dengan:   x' OR '1'='1
+                    // -> trigger trg_PreventMassUpdateLapangan (lihat SQL_Fitur_Tambahan.sql)
+                    //    akan ROLLBACK + RAISERROR karena mendeteksi UPDATE > 2 baris sekaligus.
                     string query = "UPDATE Lapangan SET Lokasi='DIHACK' WHERE NamaLapangan='" + txtNamaLapangan.Text + "'";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
@@ -314,7 +354,31 @@ namespace ReservasiFutsal02
                 }
                 LoadData();
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            // ── Trigger keamanan melempar SqlException (lewat RAISERROR) ketika
+            //    mendeteksi update massal — kita tangani khusus di sini supaya
+            //    pengguna tahu serangan tersebut BERHASIL DITAHAN, bukan error biasa.
+            catch (SqlException ex)
+            {
+                AppLogger.SimpanLog("FormLapangan.btnTestInjection", ex.Message);
+
+                if (ex.Message.Contains("Update dibatalkan") || ex.Message.Contains("indikasi"))
+                {
+                    MessageBox.Show(
+                        "🛡️  Serangan SQL Injection berhasil ditahan oleh trigger database!\n\n" +
+                        "Pesan SQL Server:\n" + ex.Message,
+                        "Trigger Keamanan Aktif", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    MessageBox.Show("SQL Error : " + ex.Message);
+                }
+                LoadData();
+            }
+            catch (Exception ex)
+            {
+                AppLogger.SimpanLog("FormLapangan.btnTestInjection", ex.Message);
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnTampilkanData_Click(object sender, EventArgs e)

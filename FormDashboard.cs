@@ -32,7 +32,7 @@ namespace ReservasiFutsal02 // inisialisasi namespace sesuai nama proyek
             this.Hide();
         }
 
-        private void btnRegister_Click(object sender, EventArgs e) // event handler untuk tombol Register, membuka form register sebagai dialog
+        private void btnRegister_Click(object sender, EventArgs e) // event handler untuk tombol Register, membuka form register sebagai dialog.
         {
             FormRegister fReg = new FormRegister();
             fReg.ShowDialog();

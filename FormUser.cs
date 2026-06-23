@@ -7,7 +7,7 @@ namespace ReservasiFutsal02
 {
     public partial class FormUser : Form // Form utama untuk role User, menampilkan jadwal lapangan yang tersedia dan riwayat reservasi milik user tersebut
     {
-        string connectionString = @"Data Source=LAPTOP-5R80O1Q5\MSSQLSERVER01;Initial Catalog=DBFutsalADO;Integrated Security=True";
+        string connectionString = @"Data Source=10.200.161.237\MSSQLSERVER01;Initial Catalog=DBFutsalADO;User ID=sa;Password=jovan1532006";
 
         private int    _userID;
         private string _nama;
@@ -178,31 +178,53 @@ namespace ReservasiFutsal02
 
             if (dr != DialogResult.Yes) return;
 
+            // ── Modul 12: Transaction Management ─────────────────────
+            // INSERT Reservasi & UPDATE status Jadwal adalah SATU unit kerja:
+            // kalau salah satu gagal di tengah jalan, keduanya HARUS dibatalkan
+            // bersama — supaya tidak terjadi reservasi "nyangkut" (tercatat
+            // tapi jadwalnya masih kelihatan 'Tersedia', sehingga bisa double-
+            // booking oleh user lain). Karena itu dibungkus SqlTransaction di
+            // sini (level C#/backend), BUKAN di trigger/SP — karena dua
+            // statement ini menyentuh dua tabel berbeda (Reservasi & Jadwal)
+            // dan hasilnya perlu ditampilkan langsung sebagai pesan sukses/gagal
+            // ke pengguna, yang lebih natural diatur di application layer.
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
+                conn.Open();
+                SqlTransaction trans = conn.BeginTransaction();
                 try
                 {
-                    conn.Open();
                     string insertQuery = @"INSERT INTO Reservasi (UserID, LapanganID, JadwalID, Status)
                                            VALUES (@uid, @lapID, @jadID, 'Aktif')";
-                    SqlCommand cmd = new SqlCommand(insertQuery, conn);
+                    SqlCommand cmd = new SqlCommand(insertQuery, conn, trans);
                     cmd.Parameters.AddWithValue("@uid",   _userID);
                     cmd.Parameters.AddWithValue("@lapID", lapanganID);
                     cmd.Parameters.AddWithValue("@jadID", jadwalID);
                     cmd.ExecuteNonQuery();
 
                     SqlCommand cmdJ = new SqlCommand(
-                        "UPDATE Jadwal SET Status='Dipesan' WHERE JadwalID=@jid", conn);
+                        "UPDATE Jadwal SET Status='Dipesan' WHERE JadwalID=@jid", conn, trans);
                     cmdJ.Parameters.AddWithValue("@jid", jadwalID);
                     cmdJ.ExecuteNonQuery();
+
+                    trans.Commit();
 
                     MessageBox.Show("✅  Reservasi berhasil! Jadwal telah dipesan.", "Sukses",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     TampilkanJadwalTersedia();
                     TampilkanRiwayatSaya();
                 }
+                catch (SqlException ex)
+                {
+                    trans.Rollback();
+                    AppLogger.SimpanLog("FormUser.btnPesan", "ROLLBACK booking JadwalID=" + jadwalID + " : " + ex.Message);
+                    MessageBox.Show("Gagal membuat reservasi (transaksi dibatalkan): " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 catch (Exception ex)
                 {
+                    trans.Rollback();
+                    AppLogger.SimpanLog("FormUser.btnPesan", "ROLLBACK booking JadwalID=" + jadwalID + " : " + ex.Message);
                     MessageBox.Show("Gagal membuat reservasi: " + ex.Message, "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -234,33 +256,48 @@ namespace ReservasiFutsal02
                 "Konfirmasi Batalkan", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (dr != DialogResult.Yes) return;
 
+            // ── Modul 12: Transaction Management ─────────────────────
+            // Sama seperti pemesanan: pembatalan menyentuh 2 tabel (Reservasi
+            // & Jadwal) yang harus konsisten bersama-sama.
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
+                conn.Open();
+                SqlTransaction trans = conn.BeginTransaction();
                 try
                 {
-                    conn.Open();
                     SqlCommand cmdJad = new SqlCommand(
-                        "SELECT JadwalID FROM Reservasi WHERE ReservasiID=@rid", conn);
+                        "SELECT JadwalID FROM Reservasi WHERE ReservasiID=@rid", conn, trans);
                     cmdJad.Parameters.AddWithValue("@rid", reservasiID);
                     int jadwalID = (int)cmdJad.ExecuteScalar();
 
                     SqlCommand cmd = new SqlCommand(
-                        "UPDATE Reservasi SET Status='Dibatalkan' WHERE ReservasiID=@rid", conn);
+                        "UPDATE Reservasi SET Status='Dibatalkan' WHERE ReservasiID=@rid", conn, trans);
                     cmd.Parameters.AddWithValue("@rid", reservasiID);
                     cmd.ExecuteNonQuery();
 
                     SqlCommand cmdJ = new SqlCommand(
-                        "UPDATE Jadwal SET Status='Tersedia' WHERE JadwalID=@jid", conn);
+                        "UPDATE Jadwal SET Status='Tersedia' WHERE JadwalID=@jid", conn, trans);
                     cmdJ.Parameters.AddWithValue("@jid", jadwalID);
                     cmdJ.ExecuteNonQuery();
+
+                    trans.Commit();
 
                     MessageBox.Show("Reservasi berhasil dibatalkan.", "Info",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     TampilkanJadwalTersedia();
                     TampilkanRiwayatSaya();
                 }
+                catch (SqlException ex)
+                {
+                    trans.Rollback();
+                    AppLogger.SimpanLog("FormUser.btnBatalkan", "ROLLBACK pembatalan ReservasiID=" + reservasiID + " : " + ex.Message);
+                    MessageBox.Show("Gagal membatalkan (transaksi dibatalkan): " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 catch (Exception ex)
                 {
+                    trans.Rollback();
+                    AppLogger.SimpanLog("FormUser.btnBatalkan", "ROLLBACK pembatalan ReservasiID=" + reservasiID + " : " + ex.Message);
                     MessageBox.Show("Gagal membatalkan: " + ex.Message, "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }

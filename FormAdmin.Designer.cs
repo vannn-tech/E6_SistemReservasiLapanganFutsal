@@ -25,6 +25,8 @@ namespace ReservasiFutsal02
             this.btnNavLapangan  = new System.Windows.Forms.Button();
             this.btnNavJadwal    = new System.Windows.Forms.Button();
             this.btnNavReservasi = new System.Windows.Forms.Button();
+            this.btnNavGrafik    = new System.Windows.Forms.Button();
+            this.btnNavLaporan   = new System.Windows.Forms.Button();
             this.sep2            = new System.Windows.Forms.Panel();
             this.lblNavData      = new System.Windows.Forms.Label();
             this.pnlSidebarUser  = new System.Windows.Forms.Panel();
@@ -51,6 +53,8 @@ namespace ReservasiFutsal02
             this.pnlSidebar.Controls.Add(this.btnNavLapangan);
             this.pnlSidebar.Controls.Add(this.btnNavJadwal);
             this.pnlSidebar.Controls.Add(this.btnNavReservasi);
+            this.pnlSidebar.Controls.Add(this.btnNavGrafik);
+            this.pnlSidebar.Controls.Add(this.btnNavLaporan);
             this.pnlSidebar.Controls.Add(this.sep2);
             this.pnlSidebar.Controls.Add(this.pnlSidebarUser);
             this.pnlSidebar.Dock     = System.Windows.Forms.DockStyle.Left;
@@ -114,8 +118,24 @@ namespace ReservasiFutsal02
             this.btnNavReservasi.Font      = new System.Drawing.Font("Segoe UI", 9.5F);
             this.btnNavReservasi.Click    += new System.EventHandler(this.btnNavReservasi_Click);
 
+            // btnNavGrafik
+            this.btnNavGrafik.Location  = new System.Drawing.Point(0, 278);
+            this.btnNavGrafik.Name      = "btnNavGrafik";
+            this.btnNavGrafik.Size      = new System.Drawing.Size(220, 42);
+            this.btnNavGrafik.Text      = "  📊   Dashboard / Grafik";
+            this.btnNavGrafik.Font      = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnNavGrafik.Click    += new System.EventHandler(this.btnNavGrafik_Click);
+
+            // btnNavLaporan
+            this.btnNavLaporan.Location  = new System.Drawing.Point(0, 320);
+            this.btnNavLaporan.Name      = "btnNavLaporan";
+            this.btnNavLaporan.Size      = new System.Drawing.Size(220, 42);
+            this.btnNavLaporan.Text      = "  🧾   Laporan Reservasi";
+            this.btnNavLaporan.Font      = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnNavLaporan.Click    += new System.EventHandler(this.btnNavLaporan_Click);
+
             // sep2
-            this.sep2.Location  = new System.Drawing.Point(0, 285);
+            this.sep2.Location  = new System.Drawing.Point(0, 369);
             this.sep2.Size      = new System.Drawing.Size(220, 1);
             this.sep2.BackColor = System.Drawing.Color.FromArgb(48, 54, 61);
 
@@ -207,6 +227,8 @@ namespace ReservasiFutsal02
         private System.Windows.Forms.Button      btnNavLapangan;
         private System.Windows.Forms.Button      btnNavJadwal;
         private System.Windows.Forms.Button      btnNavReservasi;
+        private System.Windows.Forms.Button      btnNavGrafik;
+        private System.Windows.Forms.Button      btnNavLaporan;
         private System.Windows.Forms.Panel       sep2;
         private System.Windows.Forms.Label       lblNavData;
         private System.Windows.Forms.Panel       pnlSidebarUser;

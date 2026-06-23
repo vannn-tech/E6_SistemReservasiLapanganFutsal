@@ -31,6 +31,8 @@ namespace ReservasiFutsal02
             this.btnUbah = new System.Windows.Forms.Button();
             this.btnHapus = new System.Windows.Forms.Button();
             this.btnView = new System.Windows.Forms.Button();
+            this.btnImportExcel = new System.Windows.Forms.Button();
+            this.btnImportDb = new System.Windows.Forms.Button();
             this.pnlGrid = new System.Windows.Forms.Panel();
             this.txtCari = new System.Windows.Forms.TextBox();
             this.btnCari = new System.Windows.Forms.Button();
@@ -58,6 +60,8 @@ namespace ReservasiFutsal02
             this.pnlForm.Controls.Add(this.btnUbah);
             this.pnlForm.Controls.Add(this.btnHapus);
             this.pnlForm.Controls.Add(this.btnView);
+            this.pnlForm.Controls.Add(this.btnImportExcel);
+            this.pnlForm.Controls.Add(this.btnImportDb);
             this.pnlForm.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlForm.Location = new System.Drawing.Point(0, 0);
             this.pnlForm.Name = "pnlForm";
@@ -211,6 +215,26 @@ namespace ReservasiFutsal02
             this.btnView.Text = "👁  Refresh";
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
+            // btnImportExcel
+            // 
+            this.btnImportExcel.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnImportExcel.Location = new System.Drawing.Point(10, 399);
+            this.btnImportExcel.Name = "btnImportExcel";
+            this.btnImportExcel.Size = new System.Drawing.Size(99, 31);
+            this.btnImportExcel.TabIndex = 16;
+            this.btnImportExcel.Text = "📥  Import Excel";
+            this.btnImportExcel.Click += new System.EventHandler(this.btnImportExcel_Click);
+            // 
+            // btnImportDb
+            // 
+            this.btnImportDb.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnImportDb.Location = new System.Drawing.Point(118, 399);
+            this.btnImportDb.Name = "btnImportDb";
+            this.btnImportDb.Size = new System.Drawing.Size(99, 31);
+            this.btnImportDb.TabIndex = 17;
+            this.btnImportDb.Text = "📤  Import ke DB";
+            this.btnImportDb.Click += new System.EventHandler(this.btnImportDb_Click);
+            // 
             // pnlGrid
             // 
             this.pnlGrid.Controls.Add(this.txtCari);
@@ -289,6 +313,8 @@ namespace ReservasiFutsal02
         private System.Windows.Forms.Button          btnUbah;
         private System.Windows.Forms.Button          btnHapus;
         private System.Windows.Forms.Button          btnView;
+        private System.Windows.Forms.Button          btnImportExcel;
+        private System.Windows.Forms.Button          btnImportDb;
         private System.Windows.Forms.Panel           pnlGrid;
         private System.Windows.Forms.TextBox         txtCari;
         private System.Windows.Forms.Button          btnCari;

@@ -39,10 +39,14 @@ namespace ReservasiFutsal02
             StyleNavButton(btnNavLapangan);
             StyleNavButton(btnNavJadwal);
             StyleNavButton(btnNavReservasi);
+            StyleNavButton(btnNavGrafik);
+            StyleNavButton(btnNavLaporan);
             UITheme.StyleButtonDanger(btnLogout);
             UITheme.StyleButtonSecondary(btnNavLapangan);
             UITheme.StyleButtonSecondary(btnNavJadwal);
             UITheme.StyleButtonSecondary(btnNavReservasi);
+            UITheme.StyleButtonSecondary(btnNavGrafik);
+            UITheme.StyleButtonSecondary(btnNavLaporan);
 
             // Timer update jam
             timer1.Interval = 1000;
@@ -74,7 +78,7 @@ namespace ReservasiFutsal02
 
         private void SetActiveNav(Button activeBtn, string pageTitle) // method untuk mengatur tampilan tombol navigasi yang aktif, mereset tombol lain ke gaya default
         {
-            Button[] navButtons = { btnNavLapangan, btnNavJadwal, btnNavReservasi };
+            Button[] navButtons = { btnNavLapangan, btnNavJadwal, btnNavReservasi, btnNavGrafik, btnNavLaporan };
             foreach (var btn in navButtons)
             {
                 btn.BackColor   = UITheme.BgSidebar;
@@ -112,6 +116,18 @@ namespace ReservasiFutsal02
         {
             BukaSubForm(new FormReservasi());
             SetActiveNav(btnNavReservasi, "📋  Manajemen Reservasi");
+        }
+
+        private void btnNavGrafik_Click(object sender, EventArgs e) // event handler untuk tombol navigasi Dashboard/Grafik
+        {
+            BukaSubForm(new FormGrafik());
+            SetActiveNav(btnNavGrafik, "📊  Dashboard & Grafik Reservasi");
+        }
+
+        private void btnNavLaporan_Click(object sender, EventArgs e) // event handler untuk tombol navigasi Laporan Reservasi
+        {
+            BukaSubForm(new FormLaporanReservasi());
+            SetActiveNav(btnNavLaporan, "🧾  Laporan Reservasi");
         }
 
         // ── Logout ────────────────────────────────────────────────
